@@ -429,21 +429,6 @@ const LEVELS = [{
   blurb: "Strong base. You want volume, harder variations, and a bit of intensity."
 }];
 
-/* ---------- SCHEDULES ---------- */
-const SCHED_META = [{
-  id: "everyday",
-  label: "Every Day",
-  blurb: "Train all 7 days. The focus rotates — push, legs, posterior, core — so each area still recovers between hard days."
-}, {
-  id: "fiveDay",
-  label: "5-Day Split",
-  blurb: "Five training days, a mid-week active-recovery day, and a full rest day on Sunday."
-}, {
-  id: "threeDay",
-  label: "3-Day Full Body",
-  blurb: "Three full-body sessions spaced out with recovery days. The gentlest option — good for starting out."
-}];
-
 /* ---------- EQUIPMENT-FREE EXERCISE SLOTS (floor + wall only) ---------- */
 const S = {
   push: {
@@ -824,6 +809,132 @@ const S = {
       cue: "Feet elevated on a low surface, keep a straight line, lower under control."
     }
   },
+  curl: {
+    target: "Biceps",
+    beginner: {
+      name: "Towel/Band Curls",
+      sets: 3,
+      reps: "12–15",
+      cue: "Curl a band or towel against resistance, elbows pinned to your sides, squeeze at the top."
+    },
+    intermediate: {
+      name: "Inverted Row (underhand)",
+      sets: 3,
+      reps: "10–12",
+      cue: "Underhand grip on a bar or table edge, pull your chest to it — biases the biceps."
+    },
+    advanced: {
+      name: "Chin-ups",
+      sets: 4,
+      reps: "6–10",
+      cue: "Underhand grip, pull your chin over the bar, lower under full control."
+    }
+  },
+  lateral: {
+    target: "Side delts",
+    beginner: {
+      name: "Band Lateral Raises",
+      sets: 3,
+      reps: "12–15",
+      cue: "Raise straight arms out to shoulder height against a band, no swinging."
+    },
+    intermediate: {
+      name: "Lateral Raises",
+      sets: 3,
+      reps: "12–15",
+      cue: "Arms out to the sides to shoulder height, thumbs slightly down, controlled lower."
+    },
+    advanced: {
+      name: "Lateral Raise (heavy/slow)",
+      sets: 4,
+      reps: "12–15",
+      cue: "Strict form, 2-second lower, no momentum."
+    }
+  },
+  hipflex: {
+    target: "Hip flexors · Kicking power",
+    beginner: {
+      name: "Lying Straight-Leg Raises",
+      sets: 3,
+      reps: "12",
+      cue: "On your back, low back pressed down, lift straight legs to vertical and lower slowly without arching."
+    },
+    intermediate: {
+      name: "Explosive Knee Drives",
+      sets: 3,
+      reps: "10 / side",
+      cue: "Standing tall, drive one knee up to hip height as fast as you can, lower under control. Speed is the point."
+    },
+    advanced: {
+      name: "Kick-Throughs",
+      sets: 4,
+      reps: "8 / side",
+      cue: "From a split stance, swing the back leg through into a fast, controlled kicking motion — full hip extension behind, explosive drive forward."
+    }
+  },
+  adductor: {
+    target: "Adductors · Groin protection",
+    beginner: {
+      name: "Side-Lying Adduction",
+      sets: 3,
+      reps: "12 / side",
+      cue: "Lie on your side, top leg forward on the floor, lift the bottom (straight) leg up toward the ceiling and lower slowly."
+    },
+    intermediate: {
+      name: "Copenhagen Plank (short lever)",
+      sets: 3,
+      reps: "20s / side",
+      cue: "Side plank with the inside of your top KNEE on a chair or bed edge, lift the hips and hold."
+    },
+    advanced: {
+      name: "Copenhagen Adduction",
+      sets: 4,
+      reps: "8 / side",
+      cue: "Side plank with the inside of your top FOOT on a chair or bed edge; lift and lower the hips under control."
+    }
+  },
+  rotator: {
+    target: "Rotator cuff · Throwing shoulder",
+    beginner: {
+      name: "Prone Y-T-W Raises",
+      sets: 3,
+      reps: "8 each shape",
+      cue: "Face-down, lift the arms off the floor in a Y, then a T, then a W, squeezing the shoulder blades each time."
+    },
+    intermediate: {
+      name: "Side-Lying External Rotation",
+      sets: 3,
+      reps: "12 / side",
+      cue: "Lie on your side, elbow pinned to your ribs at 90°, rotate the forearm up toward the ceiling and lower slowly."
+    },
+    advanced: {
+      name: "Prone 90/90 External Rotation",
+      sets: 4,
+      reps: "12 / side",
+      cue: "Face-down, upper arm out at 90° off the edge, rotate the forearm up and back with control — slow and strict."
+    }
+  },
+  trunkrot: {
+    target: "Trunk rotation · Kick & throw power",
+    beginner: {
+      name: "Side Plank with Reach-Through",
+      sets: 3,
+      reps: "8 / side",
+      cue: "From a side plank, thread the top arm under your body, rotate, then open back up."
+    },
+    intermediate: {
+      name: "Half-Kneeling Anti-Rotation Hold",
+      sets: 3,
+      reps: "20s / side",
+      cue: "Half-kneeling, press your hands straight out in front and resist any twist — brace hard against rotation."
+    },
+    advanced: {
+      name: "Explosive Rotational Chops",
+      sets: 4,
+      reps: "10 / side",
+      cue: "Athletic stance, rotate and chop diagonally across your body fast, pivoting the back foot — drive from the hips, not the arms."
+    }
+  },
   hamcurl: {
     target: "Hamstrings",
     beginner: {
@@ -893,40 +1004,61 @@ const DAYS = {
 };
 
 /* schedules indexed by JS weekday (0=Sun ... 6=Sat) */
-const SCHEDULES = {
-  everyday: ["coreMob", "pushCore", "lower", "pull", "coreCond", "full", "lower"],
-  fiveDay: ["rest", "pushCore", "lower", "recovery", "pull", "full", "coreCond"],
-  threeDay: ["rest", "full", "recovery", "full", "rest", "full", "recovery"]
-};
 
 // Weekly variety: each calisthenics day keeps its primary movements and rotates
 // two or three accessory slots from a pool, so the same weekday isn't identical
 // week to week while still training the day's target areas.
 const DAY_POOL = {
+  ePush: {
+    base: ["push", "pushvar", "pike", "rotator"],
+    pool: ["tri", "lateral", "trunkrot", "plank"]
+  },
+  ePull: {
+    base: ["back", "curl", "hinge", "rotator"],
+    pool: ["trunkrot", "birddog", "lateral", "core"]
+  },
+  eLegs: {
+    base: ["squat", "lunge", "stepup", "adductor"],
+    pool: ["calf", "hipflex", "core", "deadbug"]
+  },
+  eUpper: {
+    base: ["pushvar", "back", "lateral", "trunkrot"],
+    pool: ["curl", "tri", "rotator", "plank"]
+  },
+  eLower: {
+    base: ["hinge", "hamcurl", "glute", "adductor"],
+    pool: ["calf", "hipflex", "oblique", "core"]
+  },
   pushCore: {
-    base: ["push", "tri", "pike"],
-    pool: ["plank", "deadbug", "core", "oblique", "pushvar"]
+    base: ["push", "pike", "rotator"],
+    pool: ["tri", "trunkrot", "plank", "oblique", "pushvar"]
   },
   lower: {
-    base: ["squat", "lunge", "glute"],
-    pool: ["calf", "stepup", "deadbug", "oblique", "hamcurl"]
+    base: ["squat", "lunge", "hamcurl"],
+    pool: ["adductor", "hipflex", "glute", "calf", "stepup"]
   },
   pull: {
-    base: ["back", "hinge"],
-    pool: ["birddog", "core", "cardio", "oblique", "hamcurl"]
+    base: ["back", "hinge", "rotator"],
+    pool: ["trunkrot", "curl", "birddog", "core", "hamcurl"]
   },
   full: {
-    base: ["push", "squat", "back"],
-    pool: ["full", "plank", "oblique", "cardio", "pushvar"]
+    base: ["push", "squat", "adductor"],
+    pool: ["back", "hipflex", "trunkrot", "calf", "core"]
   }
 };
-function buildSlots(focus, weekNum, short) {
+function buildSlots(focus, weekNum, short, mode) {
   const dp = DAY_POOL[focus];
   if (!dp) return (DAYS[focus] || DAYS.pushCore).slots;
-  const need = (short ? 4 : 5) - dp.base.length;
-  const picks = [];
-  for (let k = 0; k < need; k++) picks.push(dp.pool[(weekNum + k) % dp.pool.length]);
-  return [...dp.base, ...picks];
+  const target = mode === "gym" ? 6 : short ? 4 : 5;
+  const need = Math.max(0, target - dp.base.length);
+  const out = [...dp.base];
+  let k = 0;
+  while (out.length < target && k < dp.pool.length * 2) {
+    const cand = dp.pool[(weekNum + k) % dp.pool.length];
+    if (!out.includes(cand)) out.push(cand);
+    k++;
+  }
+  return out;
 }
 
 /* ---------- DAILY STRETCH (adaptive) ---------- */
@@ -955,125 +1087,6 @@ const TIGHT_AREAS = [{
   id: "calves",
   label: "Calves"
 }];
-const BASE_STRETCH = [{
-  area: "shoulders",
-  name: "Neck Rolls",
-  hold: "30s",
-  sides: 2,
-  cue: "Slow neck circles one direction; the app switches you to the other."
-}, {
-  area: "shoulders",
-  name: "Cross-Body Shoulder Stretch",
-  hold: "30s / side",
-  cue: "Draw one arm across your chest with the other forearm; let the shoulder relax down."
-}, {
-  area: "chest",
-  name: "Standing Chest Opener",
-  hold: "30s",
-  cue: "Clasp your hands behind your back, straighten your arms and lift them slightly to open the chest."
-}, {
-  area: "back",
-  name: "Cat–Cow",
-  hold: "30s",
-  cue: "On all fours, alternate arching and rounding your spine in time with your breath."
-}, {
-  area: "hamstrings",
-  name: "Standing Forward Fold",
-  hold: "45s",
-  cue: "Soft knees, hinge at the hips and hang heavy; let your head and arms relax toward the floor."
-}, {
-  area: "hips",
-  name: "Kneeling Hip-Flexor Stretch",
-  hold: "30s / side",
-  cue: "Half-kneel, tuck your pelvis under and shift gently forward; feel the front of the back hip."
-}, {
-  area: "glutes",
-  name: "Figure-4 Glute Stretch",
-  hold: "30s / side",
-  cue: "On your back, cross one ankle over the opposite knee and draw the thigh toward your chest."
-}, {
-  area: "quads",
-  name: "Standing Quad Stretch",
-  hold: "30s / side",
-  cue: "Hold one ankle behind you, knees together, stand tall — touch a wall for balance."
-}, {
-  area: "calves",
-  name: "Downward-Dog Calf Pedal",
-  hold: "30s / side",
-  cue: "In a downward-dog shape, bend one knee and press the other heel toward the floor; switch."
-}, {
-  area: "back",
-  name: "Child's Pose",
-  hold: "45s",
-  cue: "Hips back to your heels, arms reaching forward, forehead down. Breathe slowly."
-}, {
-  area: "back",
-  name: "Rest & Settle",
-  hold: "60s",
-  cue: "Lie on your back, arms open, and let everything go — slow breaths as your whole body settles."
-}];
-const STRETCH_EXTRAS = {
-  shoulders: [{
-    name: "Thread the Needle",
-    hold: "45s / side",
-    cue: "On all fours, slide one arm under the other across your body; rest the shoulder and temple down."
-  }, {
-    name: "Wall Shoulder Opener",
-    hold: "45s",
-    cue: "Hands on a wall at hip height, walk your feet back and let your chest sink between your arms."
-  }],
-  chest: [{
-    name: "Floor Chest Opener",
-    hold: "45s / side",
-    cue: "Lie face-down, stretch one arm straight out to the side, gently roll onto that shoulder."
-  }],
-  back: [{
-    name: "Sphinx / Cobra",
-    hold: "30s",
-    cue: "Lie face-down, prop onto your forearms, lift your chest and lengthen the spine."
-  }, {
-    name: "Knees-to-Chest",
-    hold: "45s",
-    cue: "On your back, hug both knees into your chest and gently rock to release the low back."
-  }],
-  hips: [{
-    name: "Deep Lizard Lunge",
-    hold: "60s / side",
-    cue: "Low lunge with both hands inside the front foot; let the hips sink toward the floor."
-  }, {
-    name: "90/90 Hip Stretch",
-    hold: "45s / side",
-    cue: "Both knees bent at 90°, one in front and one to the side; lean over the front shin."
-  }],
-  glutes: [{
-    name: "Pigeon Pose",
-    hold: "60s / side",
-    cue: "Front shin across, back leg straight behind you, fold forward over the front leg."
-  }],
-  hamstrings: [{
-    name: "Seated Single-Leg Fold",
-    hold: "60s / side",
-    cue: "One leg straight, the other tucked in; hinge over the straight leg with a flat back."
-  }, {
-    name: "Lying Hamstring Stretch",
-    hold: "45s / side",
-    cue: "On your back, draw one straight leg toward you with your hands behind the thigh."
-  }],
-  quads: [{
-    name: "Couch Stretch (wall)",
-    hold: "60s / side",
-    cue: "Kneel with your back shin up a wall, front foot planted; tuck the pelvis and rise tall."
-  }, {
-    name: "Lying Quad Stretch",
-    hold: "45s / side",
-    cue: "On your side, hold the top ankle behind you, knees stacked together."
-  }],
-  calves: [{
-    name: "Wall Calf Stretch",
-    hold: "45s / side",
-    cue: "Hands on a wall, one leg back and straight with heel down; then bend that knee slightly for the lower calf."
-  }]
-};
 
 /* ---------- INJURIES ---------- */
 // Chips the user sees; each maps to a logic "region" used for substitution.
@@ -1369,6 +1382,90 @@ const INJ = {
 // Dumbbell / barbell variants — same muscle focus, scaled by level. Slots without an
 // entry (e.g. bird dog) just keep the bodyweight move when equipment is selected.
 const EQUIP = {
+  curl: {
+    dumbbell: {
+      beginner: {
+        name: "DB Biceps Curl",
+        sets: 3,
+        reps: "10–12",
+        cue: "Elbows pinned to your sides, curl without swinging, squeeze at the top."
+      },
+      intermediate: {
+        name: "DB Biceps Curl",
+        sets: 4,
+        reps: "10–12",
+        cue: "Strict form, slow 2-second lower."
+      },
+      advanced: {
+        name: "DB Incline Curl",
+        sets: 4,
+        reps: "8–12",
+        cue: "Seated leaning back, full stretch at the bottom, strict curl up."
+      }
+    },
+    barbell: {
+      beginner: {
+        name: "Barbell Curl",
+        sets: 3,
+        reps: "10–12",
+        cue: "Shoulder-width grip, elbows still, curl without leaning back."
+      },
+      intermediate: {
+        name: "Barbell Curl",
+        sets: 4,
+        reps: "8–12",
+        cue: "Strict, controlled lower, no hip drive."
+      },
+      advanced: {
+        name: "Barbell Curl (heavy)",
+        sets: 4,
+        reps: "6–10",
+        cue: "Heavier load, strict form, full range."
+      }
+    }
+  },
+  lateral: {
+    dumbbell: {
+      beginner: {
+        name: "DB Lateral Raise",
+        sets: 3,
+        reps: "12–15",
+        cue: "Arms out to shoulder height, controlled lower."
+      },
+      intermediate: {
+        name: "DB Lateral Raise",
+        sets: 4,
+        reps: "12–15",
+        cue: "Strict, 2-second lower, no momentum."
+      },
+      advanced: {
+        name: "DB Lateral Raise (slow)",
+        sets: 4,
+        reps: "12–15",
+        cue: "Pause at the top, very slow lower."
+      }
+    },
+    barbell: {
+      beginner: {
+        name: "Barbell Upright Row",
+        sets: 3,
+        reps: "10–12",
+        cue: "Wide grip, pull to chest height, elbows leading. Stop if the shoulder pinches."
+      },
+      intermediate: {
+        name: "Barbell Upright Row",
+        sets: 4,
+        reps: "10–12",
+        cue: "Wide grip, controlled, elbows lead the way."
+      },
+      advanced: {
+        name: "Barbell Upright Row",
+        sets: 4,
+        reps: "8–12",
+        cue: "Heavier, strict, full control."
+      }
+    }
+  },
   push: {
     dumbbell: {
       beginner: {
@@ -1901,7 +1998,233 @@ const EQUIP = {
 
 // Returns the exercise to show for a slot given level + active injury regions.
 // Movement pattern per slot — used to avoid repeating the same pattern across the
-// qi gong -> calisthenics seam when the session is done continuously.
+// warm-up -> strength seam when the session is done continuously.
+// Muscles trained per slot — used to track weekly sets per muscle group.
+// Evidence: gains rise with volume, with substantial diminishing returns past ~12-20
+// direct sets per muscle per week. Indirect/synergist work counts as a half set.
+const MUSCLE_MAP = {
+  push: {
+    chest: 1,
+    triceps: 0.5,
+    shoulders: 0.5
+  },
+  pushvar: {
+    chest: 1,
+    triceps: 0.5,
+    shoulders: 0.5
+  },
+  tri: {
+    triceps: 1
+  },
+  pike: {
+    shoulders: 1,
+    triceps: 0.5
+  },
+  back: {
+    back: 1,
+    biceps: 0.5
+  },
+  hinge: {
+    hamstrings: 1,
+    glutes: 1,
+    back: 0.5
+  },
+  hamcurl: {
+    hamstrings: 1,
+    glutes: 0.5
+  },
+  squat: {
+    quads: 1,
+    glutes: 0.5
+  },
+  lunge: {
+    quads: 1,
+    glutes: 0.5
+  },
+  stepup: {
+    quads: 1,
+    glutes: 0.5
+  },
+  glute: {
+    glutes: 1,
+    hamstrings: 0.5
+  },
+  calf: {
+    calves: 1
+  },
+  plank: {
+    core: 1
+  },
+  deadbug: {
+    core: 1
+  },
+  core: {
+    core: 1
+  },
+  oblique: {
+    core: 1
+  },
+  birddog: {
+    core: 1
+  },
+  full: {
+    quads: 0.5,
+    chest: 0.5,
+    shoulders: 0.5,
+    core: 0.5
+  },
+  cardio: {},
+  sprint: {},
+  hipflex: {
+    core: 0.5,
+    quads: 0.5
+  },
+  adductor: {
+    adductors: 1
+  },
+  rotator: {
+    shoulders: 0.5
+  },
+  trunkrot: {
+    core: 1
+  },
+  curl: {
+    biceps: 1
+  },
+  lateral: {
+    shoulders: 1
+  }
+};
+// Display label for each day focus, including the gym-mode splits (which have no
+// DAYS entry). Used on the dashboard card under "Calisthenics".
+const FOCUS_NOTE = {
+  pushCore: "Push & Core",
+  lower: "Lower Body",
+  pull: "Pull & Posterior",
+  full: "Full Body",
+  coreCond: "Core & Conditioning",
+  coreMob: "Core & Mobility",
+  recovery: "Active Recovery",
+  ePush: "Chest · Shoulders · Triceps",
+  ePull: "Back & Biceps",
+  eLegs: "Quads & Glutes",
+  eUpper: "Upper Body",
+  eLower: "Posterior Chain & Core"
+};
+const MUSCLES = ["chest", "back", "shoulders", "biceps", "triceps", "quads", "hamstrings", "glutes", "adductors", "calves", "core"];
+const VOL_MIN = 12,
+  VOL_MAX = 20;
+
+// Home mode = a mat in a room, no equipment at all. These slots' defaults assume a band,
+// bar, or a raised surface, so they get floor-only substitutes whenever equipment is
+// set to bodyweight.
+const HOME_SUB = {
+  curl: {
+    target: "Biceps",
+    beginner: {
+      name: "Self-Resisted Curls",
+      sets: 3,
+      reps: "10 / side",
+      cue: "Press your free hand down against the curling wrist, resisting hard the whole way up and down."
+    },
+    intermediate: {
+      name: "Self-Resisted Curls (slow)",
+      sets: 3,
+      reps: "8 / side",
+      cue: "Same, with a 3-second lift and 3-second lower against firm resistance."
+    },
+    advanced: {
+      name: "Isometric Curl Holds",
+      sets: 4,
+      reps: "20–30s / side",
+      cue: "Hold at 90° while pressing down hard with the other hand — maximal tension throughout."
+    }
+  },
+  lateral: {
+    target: "Side delts",
+    beginner: {
+      name: "Side-Lying Lateral Raise",
+      sets: 3,
+      reps: "12 / side",
+      cue: "Lie on your side and raise the top arm to vertical, slow and controlled."
+    },
+    intermediate: {
+      name: "Side-Lying Lateral Raise (slow)",
+      sets: 3,
+      reps: "10 / side",
+      cue: "3-second lift, 3-second lower, no momentum."
+    },
+    advanced: {
+      name: "Pike Shoulder Taps",
+      sets: 4,
+      reps: "10 / side",
+      cue: "In a pike position, tap the opposite shoulder while keeping your hips still."
+    }
+  },
+  hamcurl: {
+    target: "Hamstrings",
+    beginner: {
+      name: "Glute-Ham March",
+      sets: 3,
+      reps: "12",
+      cue: "In a glute bridge, march one foot at a time while keeping your hips lifted and level."
+    },
+    intermediate: {
+      name: "Sliding Leg Curls",
+      sets: 3,
+      reps: "10",
+      cue: "Heels on a towel, bridge up, slowly extend then curl your heels back in."
+    },
+    advanced: {
+      name: "Single-Leg Sliding Curls",
+      sets: 4,
+      reps: "8 / side",
+      cue: "One heel on a towel, hips high, extend and curl that leg alone under control."
+    }
+  },
+  stepup: {
+    target: "Legs · Balance",
+    beginner: {
+      name: "Split Squats",
+      sets: 3,
+      reps: "10 / side",
+      cue: "Staggered stance, lower straight down over the front leg, drive up through the heel."
+    },
+    intermediate: {
+      name: "Deep Split Squats",
+      sets: 3,
+      reps: "12 / side",
+      cue: "Longer stance, back knee toward the floor, torso tall."
+    },
+    advanced: {
+      name: "Skater Squats",
+      sets: 4,
+      reps: "8 / side",
+      cue: "Single-leg squat reaching the back knee toward the floor behind you, controlled."
+    }
+  },
+  pushvar: {
+    target: "Chest · Shoulders",
+    beginner: {
+      name: "Wide Push-ups (knees)",
+      sets: 3,
+      reps: "10–12",
+      cue: "Knees down, hands wider than shoulders, lower your chest with control."
+    },
+    intermediate: {
+      name: "Wide Push-ups",
+      sets: 3,
+      reps: "10–12",
+      cue: "Hands wider than your shoulders to bias the chest, controlled lower."
+    },
+    advanced: {
+      name: "Pseudo-Planche Push-ups",
+      sets: 4,
+      reps: "8–10",
+      cue: "Hands by your waist, lean forward over them, lower with control — heavy chest and shoulder demand."
+    }
+  }
+};
 const SLOT_PAT = {
   push: "push",
   tri: "push",
@@ -1921,12 +2244,30 @@ const SLOT_PAT = {
   oblique: "core",
   stepup: "squat",
   pushvar: "push",
-  hamcurl: "hinge"
+  hamcurl: "hinge",
+  curl: "pull",
+  lateral: "vpush",
+  hipflex: "core",
+  adductor: "core",
+  rotator: "pull",
+  trunkrot: "core"
 };
 // Qi gong meaningfully primes two calisthenics patterns: pushups (push) and its
 // bodyweight/ballet squats (squat). The calisthenics opener avoids these when chained.
 const QIGONG_PRIMES = ["push", "squat"];
+
+// Slots whose equipment variants are still bodyweight movements (planks, hollow holds,
+// mountain climbers, etc.) — these never take external load, so never ask for a weight.
+const NO_LOAD_SLOTS = ["plank", "deadbug", "core", "cardio", "birddog", "oblique", "pushvar", "pike", "full", "hipflex", "adductor", "rotator", "trunkrot", "sprint"];
 function selectExercise(slot, level, regions, equipment = "bodyweight") {
+  if (equipment === "bodyweight" && HOME_SUB[slot]) {
+    const h = HOME_SUB[slot];
+    const pick = h[level] || h.intermediate;
+    return {
+      ...pick,
+      target: h.target
+    };
+  }
   const subs = INJ[slot];
   // Injury protection takes priority over equipment.
   if (subs && regions.length) {
@@ -1952,7 +2293,8 @@ function selectExercise(slot, level, regions, equipment = "bodyweight") {
     return {
       ...EQUIP[slot][equipment][level],
       target: S[slot].target,
-      equip: equipment
+      equip: equipment,
+      loaded: !NO_LOAD_SLOTS.includes(slot)
     };
   }
   return {
@@ -1968,7 +2310,22 @@ function selectExercise(slot, level, regions, equipment = "bodyweight") {
 // to one type; the user can swap them around, but the set never changes — so every week
 // has the same number and kinds of days. Each type has <=4 activities and no duplicate kinds.
 const WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-const TEMPLATES = {
+// Two training modes.
+//  bodyweight : home-only, 4 strength days + 1 full rest + 2 explosive weekend days (~1 hr)
+//  elite      : full equipment, 5 strength days + 1 power day + 1 full rest (~1.5 hr)
+const MODES = {
+  home: {
+    id: "home",
+    label: "Home",
+    blurb: "A mat in your room, no equipment at all, limited space. Four strength days, one full rest day, and explosive work outdoors on the weekend. ~1 hr."
+  },
+  gym: {
+    id: "gym",
+    label: "Gym",
+    blurb: "Full gym access \u2014 barbell, dumbbells, bar, bands, benches. Five loaded strength days built for 12\u201320 sets per muscle per week, one outdoor power day, one full rest day. ~1.5 hr."
+  }
+};
+const TEMPLATES_BW = {
   push: {
     id: "push",
     label: "Push day",
@@ -1999,15 +2356,19 @@ const TEMPLATES = {
   },
   ladderA: {
     id: "ladderA",
-    label: "Agility ladder day",
+    label: "Speed & power (outdoors)",
     activities: ["qigong", "sprints", "stretch"],
-    short: true
+    short: true,
+    weekend: true,
+    powerVariant: "speed"
   },
   ladderB: {
     id: "ladderB",
-    label: "Agility ladder day",
+    label: "Agility & footwork (outdoors)",
     activities: ["qigong", "sprints", "stretch"],
-    short: true
+    short: true,
+    weekend: true,
+    powerVariant: "agility"
   },
   rest: {
     id: "rest",
@@ -2016,14 +2377,88 @@ const TEMPLATES = {
     rest: true
   }
 };
-const TEMPLATE_ORDER = ["push", "lower", "pull", "full", "ladderA", "ladderB", "rest"];
-const DEFAULT_SCHEDULE = ["ladderA", "push", "lower", "pull", "rest", "full", "ladderB"]; // Sun..Sat
-function validSchedule(sc) {
-  return Array.isArray(sc) && sc.length === 7 && [...sc].sort().join() === [...DEFAULT_SCHEDULE].sort().join();
+const TEMPLATES_ELITE = {
+  ePush: {
+    id: "ePush",
+    label: "Push (chest/shoulders/tri)",
+    activities: ["qigong", "calisthenics", "stretch"],
+    caliFocus: "ePush",
+    big: true
+  },
+  ePull: {
+    id: "ePull",
+    label: "Pull (back/biceps)",
+    activities: ["qigong", "calisthenics", "stretch"],
+    caliFocus: "ePull",
+    big: true
+  },
+  eLegs: {
+    id: "eLegs",
+    label: "Legs (quads/glutes)",
+    activities: ["qigong", "calisthenics", "stretch"],
+    caliFocus: "eLegs",
+    big: true
+  },
+  eUpper: {
+    id: "eUpper",
+    label: "Upper (mixed)",
+    activities: ["qigong", "calisthenics", "stretch"],
+    caliFocus: "eUpper",
+    big: true
+  },
+  eLower: {
+    id: "eLower",
+    label: "Lower (posterior/core)",
+    activities: ["qigong", "calisthenics", "stretch"],
+    caliFocus: "eLower",
+    big: true
+  },
+  ePower: {
+    id: "ePower",
+    label: "Speed & power (outdoors)",
+    activities: ["qigong", "sprints", "stretch"],
+    weekend: true,
+    powerVariant: "speed"
+  },
+  rest: {
+    id: "rest",
+    label: "Rest day",
+    activities: [],
+    rest: true
+  }
+};
+const TEMPLATES_BY_MODE = {
+  home: TEMPLATES_BW,
+  gym: TEMPLATES_ELITE
+};
+const ORDER_BY_MODE = {
+  home: ["push", "lower", "pull", "full", "ladderA", "ladderB", "rest"],
+  gym: ["ePush", "ePull", "eLegs", "eUpper", "eLower", "ePower", "rest"]
+};
+const DEFAULT_BY_MODE = {
+  home: ["ladderB", "push", "lower", "pull", "rest", "full", "ladderA"],
+  // Sun..Sat
+  gym: ["rest", "ePush", "ePull", "eLegs", "eUpper", "eLower", "ePower"] // Sun..Sat
+};
+// Back-compat alias (saved data / default state)
+const DEFAULT_SCHEDULE = DEFAULT_BY_MODE.home;
+function defaultSchedule(mode) {
+  return DEFAULT_BY_MODE[mode] || DEFAULT_BY_MODE.home;
 }
-function planFor(wd, schedule) {
-  const sc = validSchedule(schedule) ? schedule : DEFAULT_SCHEDULE;
-  const t = TEMPLATES[sc[wd]] || TEMPLATES.rest;
+function templatesFor(mode) {
+  return TEMPLATES_BY_MODE[mode] || TEMPLATES_BW;
+}
+function orderFor(mode) {
+  return ORDER_BY_MODE[mode] || ORDER_BY_MODE.home;
+}
+function validSchedule(sc, mode) {
+  const def = defaultSchedule(mode);
+  return Array.isArray(sc) && sc.length === 7 && [...sc].sort().join() === [...def].sort().join();
+}
+function planFor(wd, schedule, mode) {
+  const T = templatesFor(mode);
+  const sc = validSchedule(schedule, mode) ? schedule : defaultSchedule(mode);
+  const t = T[sc[wd]] || T.rest;
   return {
     ...t,
     day: WEEKDAYS[wd]
@@ -2038,11 +2473,11 @@ const ACT = {
     note: "Strength for the day's focus"
   },
   qigong: {
-    label: "Qi Gong",
+    label: "Warm-Up",
     icon: Leaf,
     color: C.jade,
     view: "qigong",
-    note: "20-min flow · full body"
+    note: "RAMP: raise · activate · mobilize · potentiate"
   },
   stretch: {
     label: "Yoga & Stretch",
@@ -2066,11 +2501,11 @@ const ACT = {
     note: "Self-massage & release"
   },
   sprints: {
-    label: "Sprint Ladder",
+    label: "Power & Speed",
     icon: Zap,
     color: C.coral,
     view: "sprints",
-    note: "Agility ladder footwork drills"
+    note: "Outdoors · explosiveness, sprint & jump"
   },
   walk: {
     label: "1-Hour Walk",
@@ -2320,176 +2755,284 @@ const FLOW_POOL = [{
   sec: 30,
   chain: 1,
   areas: ["chest", "shoulders"],
-  cue: "Clasp your hands behind your back, straighten your arms and lift to open the chest."
+  cue: "Clasp your hands behind your back, straighten your arms and lift to open the chest.",
+  focus: "Chest \u00b7 Shoulders",
+  steps: ["Stand tall and clasp your hands behind your lower back.", "Straighten your arms and gently lift your hands away from your body.", "Draw your shoulder blades together and open across the collarbones.", "Breathe into the front of your chest, then release slowly."],
+  tip: "Keep your chin level and ribs down \u2014 the lift comes from the shoulders, not from arching the low back."
 }, {
   name: "Standing Side Bend",
   sec: 30,
   sides: 2,
   chain: 1,
   areas: ["spine"],
-  cue: "Reach one arm overhead and lean to the opposite side, lengthening through the ribs."
+  cue: "Reach one arm overhead and lean to the opposite side, lengthening through the ribs.",
+  focus: "Side body",
+  steps: ["Stand tall, feet hip-width, one arm reaching overhead.", "Lengthen up and lean gently to the opposite side.", "Feel a long stretch down the side of your ribs and waist.", "The app switches you to the other side."],
+  tip: "Reach up and over rather than collapsing down or leaning forward."
 }, {
   name: "Standing Forward Fold",
   sec: 45,
   chain: 2,
   areas: ["hamstrings", "back"],
-  cue: "Soft knees, hinge at the hips and hang heavy, letting your head and arms relax toward the floor."
+  cue: "Soft knees, hinge at the hips and hang heavy, letting your head and arms relax toward the floor.",
+  focus: "Hamstrings",
+  steps: ["Stand with feet hip-width, knees softly bent.", "Hinge at the hips and fold forward, letting your head and arms hang heavy.", "Let gravity lengthen your spine and hamstrings.", "Bend the knees as much as you need to keep the back long."],
+  tip: "A deep knee bend is fine \u2014 the goal is a long spine, not straight legs."
 }, {
   name: "Standing Quad Stretch",
   sec: 30,
   sides: 2,
   chain: 2,
   areas: ["quads"],
-  cue: "Hold one ankle behind you, knees together, stand tall — touch a wall for balance."
+  cue: "Hold one ankle behind you, knees together, stand tall — touch a wall for balance.",
+  focus: "Quads",
+  steps: ["Stand tall near a wall for balance.", "Bend one knee and catch that ankle behind you.", "Keep your knees together and gently draw the heel toward your glute.", "Stand tall and tuck the tailbone; the app switches sides."],
+  tip: "Don't let the bent knee splay out \u2014 keep the thighs parallel."
 }, {
   name: "Downward Dog",
   sec: 45,
   chain: 3,
   areas: ["calves", "hamstrings", "shoulders"],
-  cue: "Press your hips up and back into an inverted V, pedaling the heels one at a time."
+  cue: "Press your hips up and back into an inverted V, pedaling the heels one at a time.",
+  focus: "Full body",
+  steps: ["From all fours, tuck your toes and lift your hips up and back.", "Straighten toward an inverted V, pressing your chest toward your thighs.", "Pedal the heels one at a time to wake up the calves and ankles.", "Keep a long spine and breathe steadily."],
+  tip: "Bend your knees generously \u2014 a long spine matters more than straight legs."
 }, {
   name: "Deep Squat (Malasana)",
   sec: 45,
   chain: 3,
   areas: ["hips", "ankles"],
-  cue: "Sink into a deep squat, elbows gently pressing the knees open, chest tall."
+  cue: "Sink into a deep squat, elbows gently pressing the knees open, chest tall.",
+  focus: "Hips \u00b7 Ankles",
+  steps: ["Feet a bit wider than your hips, toes slightly turned out.", "Sink your hips down toward the floor, heels down if you can.", "Bring your palms together and press your elbows gently against your knees.", "Lift your chest tall and breathe into your hips."],
+  tip: "If your heels lift, sit on a rolled towel or a book under them."
 }, {
   name: "Ankle Rock & Circle",
   sec: 30,
   sides: 2,
   chain: 3,
   areas: ["ankles", "calves"],
-  cue: "In a half-kneel, rock the knee forward over the toes, then circle the ankle each way."
+  cue: "In a half-kneel, rock the knee forward over the toes, then circle the ankle each way.",
+  focus: "Ankles",
+  steps: ["Come to a half-kneel with one foot flat in front.", "Rock your knee forward over your toes and back, keeping the heel down.", "Then circle that ankle slowly a few times each direction.", "The app switches you to the other side."],
+  tip: "Directly targets ankle mobility \u2014 go slow and stay pain-free."
 }, {
   name: "Cat–Cow",
   sec: 45,
   chain: 4,
   areas: ["spine"],
-  cue: "On all fours, flow between arching and rounding your spine with the breath."
+  cue: "On all fours, flow between arching and rounding your spine with the breath.",
+  focus: "Spine",
+  steps: ["Start on all fours, wrists under shoulders, knees under hips.", "Inhale and drop your belly, lifting your chest and gaze (cow).", "Exhale and round your spine, tucking your chin (cat).", "Flow slowly between the two with your breath."],
+  tip: "Move one vertebra at a time for a smooth, even wave."
 }, {
   name: "Thread the Needle",
   sec: 40,
   sides: 2,
   chain: 4,
   areas: ["shoulders", "spine"],
-  cue: "From all fours, slide one arm under and across, resting the shoulder and temple down."
+  cue: "From all fours, slide one arm under and across, resting the shoulder and temple down.",
+  focus: "Shoulders \u00b7 Spine",
+  steps: ["From all fours, reach one arm underneath and across your body, palm up.", "Let that shoulder and the side of your head rest toward the floor.", "Keep your hips level over your knees.", "Breathe into the upper back; the app switches sides."],
+  tip: "Let the twist come from the upper back, not from cranking the neck."
 }, {
   name: "Low Lunge",
   sec: 40,
   sides: 2,
   chain: 4,
   areas: ["hips", "quads"],
-  cue: "Back knee down, sink the hips forward and down to open the front of the back hip."
+  cue: "Back knee down, sink the hips forward and down to open the front of the back hip.",
+  focus: "Hip flexors",
+  steps: ["Step one foot forward between your hands, lower the back knee down.", "Sink your hips forward and down, front knee over the ankle.", "Lift your chest tall and feel the front of the back hip open.", "The app switches you to the other side."],
+  tip: "Pad the back knee with a towel if it's tender."
 }, {
   name: "Deep Lizard Lunge",
   sec: 45,
   sides: 2,
   chain: 4,
   areas: ["hips"],
-  cue: "Low lunge with both hands inside the front foot, hips sinking toward the floor."
+  cue: "Low lunge with both hands inside the front foot, hips sinking toward the floor.",
+  focus: "Hips",
+  steps: ["From a low lunge, walk the front foot out toward the edge of your mat.", "Bring both hands, or your forearms, to the inside of the front foot.", "Let your hips sink toward the floor.", "Breathe and soften; the app switches sides."],
+  tip: "Lower onto your forearms only as far as your hips comfortably allow."
 }, {
   name: "Kneeling Hip-Flexor",
   sec: 35,
   sides: 2,
   chain: 4,
   areas: ["hips"],
-  cue: "Half-kneel, tuck the pelvis and shift gently forward, feeling the front of the back hip."
+  cue: "Half-kneel, tuck the pelvis and shift gently forward, feeling the front of the back hip.",
+  focus: "Hip flexors",
+  steps: ["Half-kneel with one foot flat in front, back knee down.", "Tuck your pelvis under and squeeze the back glute.", "Shift gently forward until you feel the front of the back hip.", "Stay tall; the app switches sides."],
+  tip: "You should feel this in the front of the hip, not in the low back."
 }, {
   name: "Pigeon Pose",
   sec: 50,
   sides: 2,
   chain: 4,
   areas: ["glutes", "hips"],
-  cue: "Front shin across, back leg straight behind you, fold forward over the front leg."
+  cue: "Front shin across, back leg straight behind you, fold forward over the front leg.",
+  focus: "Glutes \u00b7 Hips",
+  steps: ["From all fours, bring one shin forward, knee behind that wrist.", "Extend the other leg straight back behind you.", "Keep your hips square and fold forward over the front shin.", "Breathe into the glute; the app switches sides."],
+  tip: "Slide a cushion under the front hip if it doesn't reach the floor."
 }, {
   name: "Sphinx / Cobra",
   sec: 30,
   chain: 4,
   areas: ["back", "spine"],
-  cue: "Lie face-down, prop onto your forearms, lift the chest and lengthen the spine."
+  cue: "Lie face-down, prop onto your forearms, lift the chest and lengthen the spine.",
+  focus: "Back",
+  steps: ["Lie face-down, legs extended, forearms on the floor under your shoulders.", "Press down and lift your chest, lengthening the spine forward and up.", "Keep your shoulders relaxed away from your ears.", "Breathe into the front of your body, then lower slowly."],
+  tip: "Keep it gentle \u2014 a mild backbend, never a strain in the low back."
 }, {
   name: "Seated Single-Leg Fold",
   sec: 45,
   sides: 2,
   chain: 5,
   areas: ["hamstrings"],
-  cue: "One leg straight, the other tucked in; hinge over the straight leg with a flat back."
+  cue: "One leg straight, the other tucked in; hinge over the straight leg with a flat back.",
+  focus: "Hamstrings",
+  steps: ["Sit tall, one leg straight, the other foot tucked to your inner thigh.", "Hinge at the hips and reach over the straight leg with a flat back.", "Lead with your chest rather than rounding your spine.", "The app switches you to the other side."],
+  tip: "Bend the straight-leg knee slightly if your hamstring is tight."
 }, {
   name: "90/90 Hip Stretch",
   sec: 40,
   sides: 2,
   chain: 5,
   areas: ["hips", "glutes"],
-  cue: "Both knees bent at 90°, one in front and one to the side; lean over the front shin."
+  cue: "Both knees bent at 90°, one in front and one to the side; lean over the front shin.",
+  focus: "Hips",
+  steps: ["Sit with one leg bent 90\u00b0 in front and the other bent 90\u00b0 out to the side.", "Sit tall on both sit-bones.", "Keeping your back long, lean gently over the front shin.", "Breathe into the hip; the app switches sides."],
+  tip: "Prop a hand on the floor for support and go only as far as feels open."
 }, {
   name: "Seated Side Bend",
   sec: 30,
   sides: 2,
   chain: 5,
   areas: ["spine"],
-  cue: "From a tall seat, reach one arm overhead and lean to one side."
+  cue: "From a tall seat, reach one arm overhead and lean to one side.",
+  focus: "Side body",
+  steps: ["Sit tall, cross-legged or on your heels.", "Reach one arm overhead and lean to the opposite side.", "Feel the stretch down the side of your ribs and waist.", "The app switches you to the other side."],
+  tip: "Keep both sit-bones grounded as you lengthen up and over."
 }, {
   name: "Seated Twist",
   sec: 30,
   sides: 2,
   chain: 6,
   areas: ["spine"],
-  cue: "Sit tall, one hand behind you, gently twist and lengthen the spine."
+  cue: "Sit tall, one hand behind you, gently twist and lengthen the spine.",
+  focus: "Spine",
+  steps: ["Sit tall, one hand behind you, the other on the opposite knee.", "Inhale to lengthen your spine, exhale to twist gently.", "Turn from the base of the spine up, gaze over your back shoulder.", "The app switches you to the other side."],
+  tip: "Lengthen up on each inhale before deepening the twist \u2014 never force it."
 }, {
   name: "Cross-Body Shoulder Stretch",
   sec: 30,
   sides: 2,
   chain: 6,
   areas: ["shoulders"],
-  cue: "Draw one arm across your chest with the other forearm; let the shoulder relax down."
+  cue: "Draw one arm across your chest with the other forearm; let the shoulder relax down.",
+  focus: "Shoulders",
+  steps: ["Bring one arm straight across your chest.", "Use the opposite forearm to gently draw it closer.", "Relax the shoulder of the stretching arm down, away from your ear.", "The app switches you to the other side."],
+  tip: "Keep the stretching arm relaxed and straight, not bent at the elbow."
 }, {
   name: "Figure-4 Glute Stretch",
   sec: 35,
   sides: 2,
   chain: 7,
   areas: ["glutes", "hips"],
-  cue: "On your back, cross one ankle over the opposite knee and draw the thigh toward your chest."
+  cue: "On your back, cross one ankle over the opposite knee and draw the thigh toward your chest.",
+  focus: "Glutes",
+  steps: ["Lie on your back and cross one ankle over the opposite thigh.", "Thread your hands behind the supporting thigh and draw it toward your chest.", "Keep your head and shoulders relaxed on the floor.", "Flex the crossed foot; the app switches sides."],
+  tip: "Flexing the crossed foot protects the knee."
 }, {
   name: "Lying Hamstring Stretch",
   sec: 40,
   sides: 2,
   chain: 7,
   areas: ["hamstrings"],
-  cue: "On your back, draw one straight leg toward you with your hands behind the thigh."
+  cue: "On your back, draw one straight leg toward you with your hands behind the thigh.",
+  focus: "Hamstrings",
+  steps: ["Lie on your back and draw one straight leg up toward you.", "Hold behind the thigh or calf, keeping the leg as straight as is comfortable.", "Keep the other leg long on the floor and your head down.", "The app switches you to the other side."],
+  tip: "Loop a strap or towel around the foot if you can't reach comfortably."
 }, {
   name: "Happy Baby",
   sec: 45,
   chain: 7,
   areas: ["hips"],
-  cue: "Draw your knees toward your armpits, hold the outsides of your feet, and gently rock."
+  cue: "Draw your knees toward your armpits, hold the outsides of your feet, and gently rock.",
+  focus: "Hips",
+  steps: ["Lie on your back and draw your knees toward your armpits.", "Hold the outsides of your feet, ankles stacked over knees.", "Gently rock side to side.", "Keep your tailbone heavy on the floor."],
+  tip: "If reaching the feet is hard, hold behind the thighs instead."
 }, {
   name: "Knees-to-Chest",
   sec: 40,
   chain: 7,
   areas: ["back"],
-  cue: "Hug both knees into your chest and gently rock to release the low back."
+  cue: "Hug both knees into your chest and gently rock to release the low back.",
+  focus: "Lower back",
+  steps: ["Lie on your back and hug both knees into your chest.", "Wrap your arms around your shins and let your low back release.", "Gently rock forward and back or side to side.", "Breathe into your lower back."],
+  tip: "Great for decompressing the low back after floor work."
 }, {
   name: "Supine Twist",
   sec: 35,
   sides: 2,
   chain: 8,
   areas: ["spine", "hips"],
-  cue: "Drop both knees to one side, arms wide, and turn your gaze the other way."
+  cue: "Drop both knees to one side, arms wide, and turn your gaze the other way.",
+  focus: "Spine \u00b7 Hips",
+  steps: ["Lie on your back and hug your knees in.", "Let both knees fall to one side while you extend your arms wide.", "Turn your gaze the opposite way and keep both shoulders grounded.", "The app switches you to the other side."],
+  tip: "Keep both shoulder blades on the floor even if the knees don't reach down."
 }, {
   name: "Neck Rolls",
   sec: 30,
   sides: 2,
   chain: 9,
   areas: ["neck", "shoulders"],
-  cue: "Slow neck circles one direction; the app switches you to the other."
+  cue: "Slow neck circles one direction; the app switches you to the other.",
+  focus: "Neck",
+  steps: ["Sit or stand tall with relaxed shoulders.", "Drop one ear toward your shoulder and slowly circle your chin down and around.", "Move slowly through the fullest comfortable range.", "The app switches you to the other direction."],
+  tip: "Small, smooth circles \u2014 never crank or force the neck."
+}, {
+  name: "Couch Stretch",
+  sec: 45,
+  sides: 2,
+  chain: 4,
+  areas: ["hips", "quads"],
+  focus: "Hip flexors",
+  cue: "Deep kneeling hip-flexor stretch with the back foot elevated against a wall or couch.",
+  steps: ["Kneel with your back shin against a wall or couch, back foot pointing up.", "Bring the other foot flat in front of you.", "Tuck your pelvis under and lift your chest tall.", "Breathe; the app switches you to the other side."],
+  tip: "Hip extension range is one of the two biggest drivers of kicking power \u2014 this is your highest-value stretch."
+}, {
+  name: "Adductor Rock-Back",
+  sec: 40,
+  chain: 4,
+  areas: ["adductors", "hips"],
+  focus: "Adductors",
+  cue: "On all fours with one leg out to the side, rock the hips back and forth.",
+  steps: ["From all fours, extend one leg straight out to the side, foot flat.", "Keep your spine long and rock your hips back toward your heel.", "Rock forward again, staying controlled.", "Switch legs halfway through."],
+  tip: "Keeps the groin supple for kicking \u2014 an area that takes a beating in kicking sports."
+}, {
+  name: "Sleeper Stretch",
+  sec: 40,
+  sides: 2,
+  chain: 6,
+  areas: ["shoulders"],
+  focus: "Throwing shoulder",
+  cue: "Side-lying posterior shoulder stretch for internal rotation range.",
+  steps: ["Lie on the side of your throwing arm, that shoulder under you, elbow bent 90\u00b0 in front.", "Use the top hand to gently press the forearm down toward the floor.", "Go gently \u2014 a mild stretch at the back of the shoulder, never pain.", "The app switches you to the other side."],
+  tip: "Directly targets the posterior shoulder tightness that throwing creates and that raises injury risk."
 }, {
   name: "Reclined Rest",
   sec: 60,
   chain: 10,
   closer: true,
   areas: [],
-  cue: "Lie flat, arms open, and let everything go — slow breaths as your whole body settles."
+  cue: "Lie flat, arms open, and let everything go — slow breaths as your whole body settles.",
+  focus: "Settle",
+  steps: ["Lie flat on your back, legs and arms relaxed and open.", "Let your whole body get heavy and still.", "Soften your face, jaw, and hands.", "Breathe slowly and simply rest to finish."],
+  tip: "Don't rush this \u2014 it's where the mobility work integrates."
 }];
+const FLOW_AREAS = new Set(FLOW_POOL.flatMap(p => p.areas || []));
 function dailyFlow(target, dayNum, count) {
   count = count || 16;
   target = target || [];
@@ -2514,93 +3057,337 @@ function dailyFlow(target, dayNum, count) {
 }
 
 /* ---------- AGILITY LADDER (flat ladder footwork drills) ---------- */
-const SPRINTS = [{
-  type: "warm",
-  name: "Warm-up & Footwork Prep",
-  focus: "Warm-up",
-  cue: "Light jog in place, ankle circles and leg swings, then 2–3 slow, easy walk-throughs of the ladder to groove the pattern before you speed up.",
-  steps: ["Jog in place for a minute to raise your heart rate.", "Circle your ankles and swing your legs front-to-back and side-to-side.", "Do 2–3 slow, easy walk-throughs of the ladder.", "Build to a light, springy bounce on the balls of your feet."],
-  tip: "Never start fast and cold — a full warm-up protects your knees and ankles."
-}, {
-  type: "drill",
+const POWER_POOL = [
+// ---- Block L: Agility ladder (kept grouped so you stay at your ladder) ----
+{
+  block: "L",
   name: "Two Feet In",
-  focus: "Foundation",
   reps: "2× down & back",
-  cue: "Step both feet into each square, moving down the ladder; reset and repeat.",
-  steps: ["Face the ladder at one end.", "Step your lead foot, then your trail foot, into the first square.", "Continue — two feet in each square — to the far end.", "Jog back to the start; that's one down-and-back. Do 2."],
+  cue: "Both feet into each square, moving down the ladder; reset and repeat.",
+  steps: ["Face the ladder at one end.", "Step lead foot then trail foot into the first square, continue to the end.", "Jog back; that's one down-and-back. Do 2."],
   tip: "Stay on the balls of your feet, arms pumping, eyes up."
 }, {
-  type: "drill",
+  block: "L",
   name: "Quick Run",
-  focus: "Speed",
   reps: "3× down & back",
-  cue: "One foot in each square, running through as fast as you can control — this is the fast one, so more passes.",
-  steps: ["Run through the ladder placing one foot in each square.", "Drive your knees and pump your arms.", "Sprint back to the start and go again.", "That's a dead-fast drill — do 3 down-and-backs."],
-  tip: "Foot placement first, then add speed — precision beats frantic."
+  cue: "One foot in each square, running through as fast as you can control.",
+  steps: ["Run through placing one foot in each square.", "Drive the knees, pump the arms, quick feet.", "Sprint back and repeat for 3 total."],
+  tip: "Foot placement first, then speed."
 }, {
-  type: "drill",
+  block: "L",
   name: "Lateral In-In",
-  focus: "Lateral",
   reps: "1× down & back",
-  cue: "Facing sideways, step both feet into each square; lead one way down, the other way back.",
-  steps: ["Stand side-on to the ladder.", "Lead with the near foot, bring the trail foot into the same square, travel sideways to the end.", "Come back leading with the other side so both directions get worked.", "That covers both leads — one down-and-back is enough."],
-  tip: "Stay low and light, and don't cross your feet."
+  cue: "Side-on, both feet into each square; lead one way down, the other back.",
+  steps: ["Stand side-on to the ladder.", "Lead near foot, bring trail foot in, travel sideways to the end.", "Come back leading the other side."],
+  tip: "Stay low and light, don't cross your feet."
 }, {
-  type: "drill",
+  block: "L",
   name: "In-In-Out-Out",
-  focus: "Coordination",
   reps: "2× down & back",
-  cue: "Two feet in the square, then two feet out straddling the next, down the ladder; reset and repeat.",
-  steps: ["Step both feet into the first square (in-in).", "Step both feet out to straddle the next rung (out-out).", "Keep the rhythm to the end, then come back.", "Do 2 down-and-backs."],
-  tip: "Find a steady rhythm before you speed up."
+  cue: "Two feet in the square, two feet out straddling the next.",
+  steps: ["In-in into the first square.", "Out-out straddling the next rung; keep the rhythm to the end.", "Jog back; do 2."],
+  tip: "Find a rhythm before you speed up."
 }, {
-  type: "drill",
+  block: "L",
   name: "Ickey Shuffle",
-  focus: "Agility",
   reps: "1× down & back",
-  cue: "In, in, out to the side — a complex weaving pattern, so one careful pass down and back.",
-  steps: ["Lead foot in, other foot in beside it, lead foot out to the side.", "Step up into the next square with the other foot and repeat, alternating sides.", "It's in-in-out, in-in-out down the ladder.", "Come back the same way — one down-and-back."],
-  tip: "Go slow to learn it — the pattern clicks with practice."
+  cue: "In, in, out to the side — a weaving pattern, one careful pass each way.",
+  steps: ["Lead foot in, other foot in beside it, lead foot out to the side.", "Step up into the next square with the other foot; alternate sides down.", "Come back the same way."],
+  tip: "Go slow to learn it — it clicks with practice."
 }, {
-  type: "drill",
+  block: "L",
   name: "Lateral High Knees",
-  focus: "Power",
   reps: "1× down & back",
-  cue: "Move sideways through the squares driving the knees up; lead one way down, the other back.",
-  steps: ["Stand side-on to the ladder.", "Step sideways through the squares, driving your knees up high.", "Travel to the end, then come back leading with the other side.", "One down-and-back covers both directions."],
-  tip: "Land softly — control the impact through your hips and knees."
+  cue: "Sideways through the squares, driving the knees up high.",
+  steps: ["Stand side-on to the ladder.", "Step sideways, driving your knees high, light and quick.", "Come back leading the other side."],
+  tip: "Land softly, control through hips and knees."
 }, {
-  type: "drill",
+  block: "L",
   name: "Hopscotch",
-  focus: "Hops",
   reps: "2× down & back",
-  cue: "Straddle out, then hop both feet together into the next square; reset and repeat.",
-  steps: ["Start with both feet out, straddling the first square.", "Hop both feet together into the next square.", "Hop back out to straddle the following one, to the end.", "Jog back and repeat for 2 total."],
-  tip: "Soft, quiet landings — absorb through your knees and ankles."
+  cue: "Straddle out, then hop both feet together into the next square.",
+  steps: ["Start straddling the first square.", "Hop both feet in, then straddle-out the next, to the end.", "Jog back; do 2."],
+  tip: "Soft, quiet landings — absorb through knees and ankles."
 }, {
-  type: "drill",
+  block: "L",
   name: "Carioca (Grapevine)",
-  focus: "Hips",
   reps: "1× down & back",
-  cue: "Grapevine sideways, crossing one foot front then behind — slow and rotational, one pass each way.",
-  steps: ["Stand side-on, moving along the length of the ladder.", "Cross your trail foot in front, step, then cross it behind.", "Let your hips rotate freely as you grapevine to the end.", "Grapevine back the other way — one down-and-back."],
-  tip: "Loosen the hips and keep it smooth — great rotational mobility."
+  cue: "Grapevine sideways, crossing one foot front then behind.",
+  steps: ["Side-on, cross the trail foot in front, step, then cross it behind.", "Let the hips rotate freely to the end.", "Grapevine back the other way."],
+  tip: "Loosen the hips — great rotational speed work."
 }, {
-  type: "drill",
-  name: "Slalom Jumps",
-  focus: "Lateral hops",
-  reps: "1× down & back",
-  cue: "Two-footed zig-zag hops from square to square — controlled hops, one pass down and back.",
-  steps: ["Start beside the first square, feet together.", "Hop diagonally forward into the first square, then diagonally into the next on the other side.", "Zig-zag to the end with light two-footed hops.", "Come back the same way — one down-and-back."],
-  tip: "Keep the hops small and controlled, soft knees on every landing."
+  block: "P",
+  name: "Countermovement Jumps",
+  contacts: 20,
+  reps: "4 × 5",
+  cue: "Dip and explode straight up for maximum height, reset each rep.",
+  steps: ["Stand tall, feet hip-width.", "Dip quickly and jump as high as you can, reaching up.", "Land soft with bent knees, stand tall, then reset and repeat."],
+  tip: "Land with your shoulders over your knees and your knees tracking over your toes \u2014 never let them cave inward. Full reset between reps."
 }, {
-  type: "cool",
-  name: "Cool-down & Stretch",
-  focus: "Cool-down",
-  cue: "Easy walk for a couple of minutes to bring the heart rate down, shake out your legs and ankles, then flow into your daily stretch.",
-  steps: ["Walk easily for a couple of minutes.", "Let your breathing settle.", "Gently shake out your legs and ankles.", "Head into your daily stretch to finish."],
-  tip: "Cooling down and stretching reduces next-day stiffness."
+  block: "P",
+  name: "Squat Jumps (paused)",
+  contacts: 24,
+  reps: "4 × 6",
+  cue: "Pause in a squat, then explode up with no dip — pure concentric power.",
+  steps: ["Lower into a squat and hold for a second.", "Without dipping further, jump as high as you can.", "Land soft, reset in the squat, repeat."],
+  tip: "The pause removes the stretch reflex, building raw power."
+}, {
+  block: "P",
+  name: "Tuck Jumps",
+  contacts: 18,
+  reps: "3 × 6",
+  cue: "Jump and drive both knees toward your chest, land soft.",
+  steps: ["Stand tall, dip and jump up.", "Drive both knees up toward your chest at the top.", "Land softly with bent knees and reset."],
+  tip: "Absorb every landing — quiet feet, bent knees."
+}, {
+  block: "P",
+  name: "Broad Jumps",
+  contacts: 20,
+  reps: "4 × 5",
+  cue: "Standing long jump for max distance, stick the landing.",
+  steps: ["Swing your arms back and load your hips.", "Jump forward as far as you can, swinging the arms.", "Stick the landing with soft, bent knees; reset and repeat."],
+  tip: "Horizontal power drives acceleration — stick each landing under control."
+}, {
+  block: "P",
+  name: "Bounding",
+  contacts: 40,
+  reps: "4 × 20m",
+  cue: "Exaggerated running leaps, covering max distance per stride.",
+  steps: ["Start jogging, then bound: big, powerful leaps off one leg to the other.", "Drive the knee up and reach for distance each stride.", "Jog back to recover between reps."],
+  tip: "Think 'slow-motion sprinting' with maximum push each step."
+}, {
+  block: "P",
+  name: "Lateral Skater Bounds",
+  contacts: 48,
+  reps: "3 × 8 / side",
+  cue: "Leap side to side, landing on one leg and stabilizing.",
+  steps: ["Push off one leg and leap laterally onto the other.", "Land soft and balanced, then bound back the other way.", "Control each landing before the next leap."],
+  tip: "Builds single-leg power and lateral control — stick each landing before the next bound. Watch for the knee drifting inward."
+}, {
+  block: "P",
+  name: "Pogo Hops",
+  contacts: 48,
+  reps: "4 × 12",
+  cue: "Fast, stiff-ankle repeated hops — minimal knee bend, quick contacts.",
+  steps: ["Stand tall, keep your legs fairly straight and stiff.", "Bounce rapidly off the balls of your feet like a pogo stick.", "Minimize ground-contact time — quick and springy."],
+  tip: "Trains ankle stiffness and reactive strength, which correlate strongly with sprint speed."
+}, {
+  block: "P",
+  name: "Box / Bench Jumps",
+  contacts: 20,
+  reps: "4 \u00d7 5",
+  cue: "Jump onto a bench or low wall, land soft in a quarter-squat, step back down.",
+  steps: ["Stand an arm's length from a stable bench, step, or low wall.", "Dip and jump up, landing softly with both feet on top.", "Absorb into a quarter-squat, then stand tall.", "Step down (don't jump down) and reset."],
+  tip: "Step down between reps to keep the landing volume low and the jumps sharp."
+}, {
+  block: "P",
+  name: "Stair Bounds",
+  contacts: 48,
+  reps: "4 \u00d7 1 flight",
+  cue: "Powerful bounding up a flight of stairs, one step per bound.",
+  steps: ["Find a stable flight of stairs.", "Bound upward, driving one knee high and pushing hard off the other leg.", "Use your arms and cover as much distance per bound as you can control.", "Walk back down to recover fully."],
+  tip: "Excellent resisted power work \u2014 always walk down, never bound down."
+}, {
+  block: "P",
+  name: "Depth Drops",
+  contacts: 15,
+  reps: "3 × 5",
+  cue: "Step off a low step and land soft, absorbing the force.",
+  steps: ["Stand on a low step (20–30cm).", "Step off and land on both feet, absorbing softly into a quarter-squat.", "Stick and hold each landing; step back up and repeat."],
+  tip: "Rest 5–10 seconds between reps and 2–3 minutes between sets. Master soft absorption before progressing to rebound depth jumps."
+}, {
+  block: "P",
+  name: "Single-Leg Line Hops",
+  contacts: 60,
+  reps: "3 × 10 / side",
+  cue: "Hop forward and back over a line on one leg, controlled and springy.",
+  steps: ["Balance on one leg beside a line on the floor.", "Hop over and back across the line, light and controlled.", "Keep the knee tracking over the toes; switch legs."],
+  tip: "Advanced — build up gradually and keep landings soft and aligned."
+}, {
+  block: "C",
+  name: "Deceleration Drops",
+  reps: "5 reps",
+  cue: "Sprint ~10m, then stop as fast as you can in 2\u20133 steps and hold the position.",
+  steps: ["Accelerate hard for about 10m.", "Decelerate in as few steps as possible \u2014 sink the hips, chest up, weight back.", "Stick the final position for a beat without stumbling.", "Walk back and repeat."],
+  tip: "Braking is the single biggest predictor of change-of-direction ability. Sink the hips, don't stiffen the legs."
+}, {
+  block: "C",
+  name: "5-10-5 Shuttle",
+  reps: "4 reps",
+  cue: "From the middle, sprint 5yd one way, 10yd back, then 5yd to finish.",
+  steps: ["Straddle a middle line in an athletic stance.", "Sprint 5 yards to one side and touch the line.", "Turn, sprint 10 yards across, touch.", "Turn and sprint 5 yards through the middle. Alternate your starting direction each rep."],
+  tip: "Plant on the outside foot and keep your shoulders low through the turn."
+}, {
+  block: "C",
+  name: "Backpedal to Sprint",
+  reps: "6 reps",
+  cue: "Backpedal 5m, then flip the hips and sprint forward 10m \u2014 straight from the infield.",
+  steps: ["Start in a fielding-ready athletic stance.", "Backpedal about 5m under control, staying low.", "Snap the hips open, turn, and sprint forward 10m.", "Alternate which way you turn each rep."],
+  tip: "The hip flip is the skill \u2014 practice turning both directions equally."
+}, {
+  block: "C",
+  name: "Lateral Shuffle & Cut",
+  reps: "6 reps",
+  cue: "Shuffle laterally, then plant hard and cut back the other way.",
+  steps: ["Athletic stance, shuffle 5m to one side without crossing your feet.", "Plant firmly on the outside foot.", "Explode back the other way for 5m.", "Stay low and keep your chest up throughout."],
+  tip: "Keep your center of mass low \u2014 standing tall makes the plant slow and hard on the knee."
+}, {
+  block: "C",
+  name: "Base-Running Turns",
+  reps: "4 laps",
+  cue: "Sprint and round an imaginary base with a banked turn, then accelerate out of it.",
+  steps: ["Mark a corner as your base.", "Sprint in, curve your path slightly, and lean into the turn.", "Touch the inside corner with your foot and drive out.", "Accelerate 10m past it before easing down."],
+  tip: "Directly transfers to rounding bases \u2014 the lean lets you carry speed through the turn."
+}, {
+  block: "C",
+  name: "Split-Step Reaction",
+  reps: "8 reps",
+  cue: "Small hop into an athletic base, then explode in a direction on your own cue.",
+  steps: ["Stand ready and take a small split-step hop, landing balanced on the balls of your feet.", "As you land, pick a direction and explode 5m.", "Vary the direction each rep \u2014 left, right, forward, back.", "Reset and repeat."],
+  tip: "The split-step is what lets infielders react instantly \u2014 time it to the moment the ball is kicked."
+}, {
+  block: "S",
+  name: "Accelerations",
+  reps: "5 × 20m",
+  cue: "Explode from a staggered stance with a strong forward lean.",
+  steps: ["Start in a staggered (2-point) stance, weight forward.", "Drive out leaning from the ankles \u2014 a straight line ankle to head, no folding at the hips.", "Stay angled forward through the first 15\u201320m rather than popping upright early; walk back to full recovery."],
+  tip: "Push the ground back, not down — the lean and horizontal drive matter most early."
+}, {
+  block: "S",
+  name: "Flying Sprints",
+  reps: "4 × 20m build-in",
+  cue: "Build speed over 20m, then hit ~95% max velocity for 20m.",
+  steps: ["Use a 20m build-up run-in to reach near-top speed.", "Hit a relaxed, tall, max-velocity 20m zone.", "Ease down and walk back to full recovery."],
+  tip: "Sub-max ~90–95% relaxed running is the best driver of top-end speed."
+}, {
+  block: "S",
+  name: "Resisted Starts",
+  reps: "6 \u00d7 15m",
+  cue: "Explosive accelerations against resistance \u2014 a partner, a band, or a steep push against a hill-free surface.",
+  steps: ["Loop a band around your waist anchored behind you, or have a partner hold you back with light resistance.", "Drive out with a hard forward lean, pushing the ground back.", "Accelerate about 15m against the resistance.", "Walk back to full recovery between reps."],
+  tip: "No band or partner? Do the same as a march \u2014 exaggerated slow-motion sprint steps with maximal push \u2014 for the same hip-extension emphasis."
+}, {
+  block: "S",
+  name: "Sled / Stair Push Starts",
+  reps: "6 \u00d7 12m",
+  cue: "Powerful acceleration up a set of stairs or a mild ramp \u2014 resisted acceleration without needing a hill.",
+  steps: ["Find stairs, a ramp, or any mild upward grade.", "Drive up hard for 10\u201315m with a strong forward lean and aggressive arm action.", "Focus on pushing the ground back behind you.", "Walk down to full recovery."],
+  tip: "Stairs are everywhere \u2014 a park, bleachers, an apartment stairwell \u2014 and give the same hip-extension emphasis a hill would."
+}, {
+  block: "S",
+  name: "Wall Drive Drill",
+  reps: "3 × 10 / side",
+  cue: "Lean into a wall and drive one knee up powerfully.",
+  steps: ["Hands on the wall, arms long \u2014 push yourself away rather than sagging into it.", "Body in one straight line from ankles to head, weight on the balls of your feet (not way up on the toes).", "Punch one knee forward and up, toe pulled up, then drive the foot straight down under your hip.", "Keep the lean \u2014 don't let the heel swing back to your glute."],
+  tip: "Two classic faults: folding at the hips instead of leaning from the ankles, and heels kicking back which kills the lean."
+}, {
+  block: "S",
+  name: "A-Skips",
+  reps: "3 × 20m",
+  cue: "Rhythmic skip driving the knee up with a dorsiflexed foot.",
+  steps: ["Skip forward, driving one knee to hip height \u2014 heel up, knee up, toe up.", "Punch the foot down forcefully under your hip, landing midfoot.", "Stay tall and rhythmic \u2014 think 'knees up, feet down'; jog back."],
+  tip: "The 'toe up' is the secret \u2014 dorsiflexion gives you a much better ground strike. Punch the ground; don't just lift the knee."
+}, {
+  block: "S",
+  name: "Falling Starts",
+  reps: "5 × 15m",
+  cue: "Fall forward from standing, then catch yourself into a sprint.",
+  steps: ["Stand tall, let yourself fall forward from the ankles.", "As you fall, explode into a sprint to catch yourself.", "Accelerate ~15m; walk back to full recovery."],
+  tip: "Teaches the aggressive forward lean of a powerful first few steps."
+}, {
+  block: "F",
+  name: "Jump Squats",
+  contacts: 24,
+  reps: "3 × 8",
+  cue: "Squat and explode up, landing soft and flowing into the next.",
+  steps: ["Squat to about parallel.", "Explode straight up, then land soft and absorb.", "Flow into the next rep with control."],
+  tip: "Keep every landing soft and quiet."
+}, {
+  block: "F",
+  name: "Split-Squat Jumps",
+  contacts: 36,
+  reps: "3 × 6 / side",
+  cue: "Lunge and jump, switching legs in the air.",
+  steps: ["Drop into a lunge, back knee toward the floor.", "Explode up and switch legs in mid-air.", "Land soft into the next lunge."],
+  tip: "Powerful single-leg drive — land under control, ease off if the knee complains."
+}, {
+  block: "F",
+  name: "Broad Jump to Sprint",
+  contacts: 8,
+  reps: "4 reps",
+  cue: "One max broad jump, then immediately accelerate ~10m.",
+  steps: ["Perform a max standing broad jump and stick the landing.", "Immediately explode into a ~10m sprint.", "Walk back to full recovery; repeat."],
+  tip: "Links jumping power to sprint acceleration — a great transfer drill."
+}, {
+  block: "F",
+  name: "Calf Pogo Sprints",
+  contacts: 45,
+  reps: "3 × 15m",
+  cue: "Travel forward on stiff, springy ankles — minimal knee bend.",
+  steps: ["Keep your legs fairly straight and stiff.", "Bounce forward on the balls of your feet, quick contacts.", "Cover ~15m; walk back to recover."],
+  tip: "Builds the ankle stiffness that makes fast feet possible."
 }];
+function pickBlock(pool, n, off) {
+  const r = [];
+  for (let k = 0; k < n; k++) r.push(pool[(off + k) % pool.length]);
+  return r;
+}
+// NSCA guidance: keep high-intensity plyometric foot contacts in a sane per-session band
+// (roughly 80-120 for an intermediate athlete), and lower the count as intensity rises.
+const CONTACT_MIN = 80,
+  CONTACT_MAX = 120;
+function contactsOf(items) {
+  return items.reduce((n, x) => n + (x.contacts || 0), 0);
+}
+// Session order follows the fatigability principle: the most neurally demanding and
+// fatigue-sensitive work goes first. The ladder is a low-intensity coordination primer,
+// then max-velocity sprinting (most degraded by fatigue), then jumps, then braking/COD,
+// then a short finisher.
+//   variant "speed"   — sprint + jump emphasis (higher impact)
+//   variant "agility" — footwork + change-of-direction emphasis (low impact)
+// The two weekend days alternate so back-to-back sessions don't stack impact load.
+// Optional midweek speed exposure for the gym block. Placed on an upper-body day so it
+// doesn't compete with heavy leg work, and done BEFORE lifting since top speed is the
+// quality most degraded by fatigue.
+const SPEED_DAY_FOCUS = "ePull";
+function speedBlock(weekNum) {
+  const S = POWER_POOL.filter(p => p.block === "S");
+  return [0, 1].map(k => S[(weekNum + k) % S.length]);
+}
+function dailyPower(idx, variant) {
+  idx = idx || 0;
+  const mix = variant === "agility" ? {
+    L: 4,
+    S: 1,
+    P: 2,
+    C: 3
+  } : {
+    L: 2,
+    S: 3,
+    P: 4,
+    C: 1
+  };
+  const L = POWER_POOL.filter(p => p.block === "L"),
+    P = POWER_POOL.filter(p => p.block === "P"),
+    COD = POWER_POOL.filter(p => p.block === "C"),
+    S = POWER_POOL.filter(p => p.block === "S"),
+    F = POWER_POOL.filter(p => p.block === "F");
+  let plyo = pickBlock(P, mix.P, idx * 4);
+  const fin = pickBlock(F, 1, idx);
+  // Trim the session if the rotation happened to stack several high-contact drills.
+  let guard = 0;
+  while (contactsOf([...plyo, ...fin]) > CONTACT_MAX && guard++ < 12) {
+    const spare = P.filter(x => !plyo.includes(x)).sort((a, b) => (a.contacts || 0) - (b.contacts || 0))[0];
+    if (!spare) break;
+    let hiIdx = 0;
+    plyo.forEach((x, i) => {
+      if ((x.contacts || 0) > (plyo[hiIdx].contacts || 0)) hiIdx = i;
+    });
+    if ((spare.contacts || 0) >= (plyo[hiIdx].contacts || 0)) break;
+    plyo[hiIdx] = spare;
+  }
+  return [...pickBlock(L, mix.L, idx * 3), ...pickBlock(S, mix.S, idx * 2), ...plyo, ...pickBlock(COD, mix.C, idx * 2), ...fin];
+}
 
 /* ---------- QI GONG (fixed daily flow, 1 min each) ---------- */
 // Friday self-massage / foam rolling — pairs with the yoga rest day. Needs a foam
@@ -2643,7 +3430,7 @@ const FOAMROLL = [{
   sides: 2,
   cue: "Roll the outer thigh gently — this area can be tender.",
   steps: ["Lie on your side with the roller under your outer thigh.", "Roll slowly from your hip toward — but not onto — the knee.", "Keep the pressure moderate; this area is often sensitive.", "Switch sides."],
-  tip: "Go gently and stay well above the knee, especially on your ACL side."
+  tip: "Go gently and stay well above the knee — this area is often tender and responds better to moderate pressure."
 }, {
   name: "Glutes",
   focus: "Glutes",
@@ -2737,361 +3524,343 @@ const MOB_AREAS = [{
 // Qi gong = mind-body connection + overall mobility. 15 fixed "core" moves anchor the
 // flow; 5 slots rotate from a tagged pool, biased toward the areas worked or reported
 // tight/sore the day before (active mobility for what you loaded).
-const QI_POOL = [{
-  zone: "upper",
-  areas: ["neck", "shoulders"],
-  sec: 30,
+// RAMP warm-up pool (Raise, Activate, Mobilize, Potentiate) — the evidence-based
+// athletic warm-up. phase 1=Raise, 2=Activate, 3=Mobilize, 4=Potentiate. Ordered by
+// phase so the session ends potentiated (dynamic/explosive), never relaxed.
+const QI_POOL = [
+// --- 1. RAISE: heart rate, muscle temperature, blood flow ---
+{
+  phase: 1,
+  zone: "raise",
+  areas: [],
+  sec: 60,
+  name: "Jog in Place",
+  focus: "Raise",
+  cue: "Easy jogging or brisk marching on the spot to lift your heart rate and muscle temperature.",
+  steps: ["Jog or march on the spot at an easy, conversational pace.", "Stay light on the balls of your feet.", "Let your arms swing naturally.", "Build gradually — you should feel warm, not winded."],
+  tip: "Raising muscle temperature is what makes everything after this work better."
+}, {
+  phase: 1,
+  zone: "raise",
+  areas: [],
+  sec: 45,
+  name: "Jumping Jacks",
+  focus: "Raise",
+  cue: "Steady jacks to raise your heart rate and open the shoulders and hips.",
+  steps: ["Feet together, arms at your sides.", "Jump the feet wide as the arms sweep overhead.", "Return and repeat at a steady, brisk rhythm."],
+  tip: "Simple and effective — keep the pace steady rather than frantic."
+}, {
+  phase: 1,
+  zone: "raise",
+  areas: ["hamstrings"],
+  sec: 40,
+  name: "Butt Kicks",
+  focus: "Raise",
+  cue: "Jog in place kicking your heels up toward your glutes.",
+  steps: ["Jog on the spot, staying tall.", "Kick your heels up toward your glutes each step.", "Keep a light, quick rhythm.", "Stay on the balls of your feet."],
+  tip: "Warms the hamstrings through the exact range sprinting uses."
+}, {
+  phase: 1,
+  zone: "raise",
+  areas: ["hips", "quads"],
+  sec: 40,
+  name: "High Knees",
+  focus: "Raise",
+  cue: "Run in place driving your knees up to hip height.",
+  steps: ["Run on the spot, staying tall and braced.", "Drive each knee up to hip height.", "Pump your arms in opposition.", "Keep the contacts quick and light."],
+  tip: "Wakes up the hip flexors and sets a fast turnover."
+},
+// --- 2. ACTIVATE: switch on the key muscles ---
+{
+  phase: 2,
+  zone: "activate",
+  areas: ["glutes", "hips"],
+  sec: 45,
+  name: "Glute Bridges",
+  focus: "Activate",
+  cue: "Drive your hips up and squeeze the glutes hard at the top.",
+  steps: ["Lie on your back, knees bent, feet flat and close to your glutes.", "Drive through your heels and lift your hips into a straight line.", "Squeeze the glutes hard at the top for a beat, then lower with control."],
+  tip: "Waking the glutes up first means they actually do their job under load."
+}, {
+  phase: 2,
+  zone: "activate",
+  areas: ["glutes", "hips"],
+  sec: 40,
   sides: 2,
-  intensity: 1,
-  name: "Neck & Shoulder Rolls",
-  focus: "Neck · Shoulders",
-  cue: "Slow neck rolls and shoulder rolls to release the upper body.",
-  steps: ["Stand or sit tall.", "Slowly circle your head — ear toward shoulder, around, and back.", "Then roll your shoulders up, back, and down in big circles.", "Keep everything slow and gentle."],
-  tip: "Small, smooth circles — never crank the neck."
+  needs: "equip",
+  name: "Lateral Band Steps",
+  focus: "Activate",
+  cue: "Small squat, step out and back against resistance to fire the glute medius.",
+  steps: ["Loop a band above your knees (or just hold a quarter-squat).", "Sit into a small squat, chest tall.", "Step out and back in the same spot, keeping tension the whole way.", "The app switches you to the other direction."],
+  tip: "Hip stability that pays off directly in sprinting and single-leg landings."
 }, {
-  zone: "legs",
-  areas: ["ankles"],
-  intensity: 1,
-  sec: 30,
+  phase: 2,
+  zone: "activate",
+  areas: ["glutes", "hips"],
+  sec: 40,
   sides: 2,
-  name: "Ankle Circles",
-  focus: "Ankles",
-  cue: "Circle each ankle slowly through its full range.",
-  steps: ["Lift one foot slightly off the floor, or cross it over the other knee.", "Circle the ankle slowly one direction, then the other.", "Move through the fullest comfortable range.", "The app switches you to the other side."],
-  tip: "Keeps the ankles mobile for squats, landings, and footwork."
+  name: "Clamshells",
+  focus: "Activate",
+  cue: "Side-lying, knees bent, open the top knee while keeping your hips stacked.",
+  steps: ["Lie on your side, knees bent about 45 degrees, feet together.", "Keep your hips stacked and still.", "Open the top knee like a clamshell, squeezing the outer glute.", "Lower with control; the app switches you to the other side."],
+  tip: "Fires the glute medius with nothing but a mat."
 }, {
-  zone: "upper",
-  areas: ["neck", "shoulders"],
-  intensity: 1,
-  name: "Shoulder Shrugs & Rolls",
-  focus: "Shoulders",
-  cue: "Shrug up and release, then roll the shoulders to melt tension.",
-  steps: ["Inhale and shrug your shoulders up toward your ears.", "Exhale and let them drop completely.", "Then roll them back in slow circles.", "Feel the tension release with each drop."],
-  tip: "The full release on the exhale is the point."
+  phase: 2,
+  zone: "activate",
+  areas: ["back", "shoulders"],
+  sec: 40,
+  name: "Scapular Push-ups",
+  focus: "Activate",
+  cue: "In a plank, pinch and spread your shoulder blades without bending your elbows.",
+  steps: ["Set up in a push-up position (knees down is fine), arms straight.", "Let your chest sink slightly as your shoulder blades pinch together.", "Push the floor away to spread them apart.", "Keep your elbows locked the whole time."],
+  tip: "Wakes up the serratus and mid-back with zero equipment."
 }, {
-  zone: "shoulders",
-  areas: ["shoulders"],
-  intensity: 2,
-  name: "Forward Arm Circles",
-  focus: "Shoulders",
-  cue: "Slow, full circles forward to mobilize the shoulder joints.",
-  steps: ["Stand tall, arms out to your sides.", "Draw large, slow circles forward with both arms.", "Move through the fullest comfortable range.", "Keep the rest of your body still."],
-  tip: "Bigger, slower circles beat fast small ones."
-}, {
-  zone: "shoulders",
-  areas: ["shoulders", "chest"],
-  intensity: 2,
-  name: "Backward Arm Circles",
-  focus: "Shoulders",
-  cue: "Slow, full circles backward to open the chest and upper back.",
-  steps: ["Stand tall, arms extended.", "Draw large, slow circles backward with both arms.", "Gently squeeze your upper back as the arms sweep behind.", "Keep breathing steadily."],
-  tip: "Let your chest open — a nice antidote to hunching."
-}, {
-  zone: "shoulders",
-  areas: ["shoulders", "chest"],
-  intensity: 2,
-  name: "Drawing the Bow",
-  focus: "Shoulders · Chest",
-  cue: "Mime drawing a bow side to side to open the chest and shoulders.",
-  steps: ["Stand in a wide stance, knees soft.", "Extend one arm as if holding a bow, draw the other back like pulling the string.", "Open across your chest, gaze past the front hand.", "Release and switch sides."],
-  tip: "Feel the stretch across your chest as you draw back."
-}, {
-  zone: "shoulders",
-  areas: ["shoulders", "side"],
-  intensity: 2,
-  name: "Separating Heaven and Earth",
-  focus: "Shoulders · Side",
-  cue: "One hand presses up, the other down, lengthening through the torso.",
-  steps: ["Stand tall, knees soft.", "Press one palm up toward the sky and the other down toward the earth.", "Feel the lengthening through your side and shoulders.", "Switch hands slowly with your breath."],
-  tip: "A classic move to decompress the spine and shoulders."
-}, {
-  zone: "shoulders",
-  areas: ["chest", "shoulders"],
-  intensity: 2,
-  name: "Pushing Mountains",
-  focus: "Chest · Shoulders",
-  cue: "Slowly press both palms forward and draw them back, like pushing air.",
-  steps: ["Stand with hands at your chest, palms facing out.", "Slowly press both palms forward until your arms are extended.", "Draw them back to your chest with control.", "Coordinate with slow breathing."],
-  tip: "Move as if pushing through water — smooth resistance."
-}, {
-  zone: "spine",
-  areas: ["spine", "core", "hips"],
+  phase: 4,
+  zone: "potentiate",
+  areas: ["back", "shoulders"],
   sec: 30,
+  name: "Fast Supermans",
+  focus: "Potentiate",
+  cue: "Quick, sharp back extensions to switch on the posterior chain.",
+  steps: ["Lie face-down, arms extended overhead.", "Lift your chest, arms, and legs sharply off the floor.", "Lower with control and repeat at a brisk, snappy pace.", "5–8 crisp reps."],
+  tip: "The no-equipment way to potentiate pulling muscles."
+}, {
+  phase: 2,
+  zone: "activate",
+  areas: ["core"],
+  sec: 45,
+  name: "Dead Bugs",
+  focus: "Activate",
+  cue: "Brace your core and extend opposite arm and leg without letting your back arch.",
+  steps: ["Lie on your back, arms up, knees over hips.", "Press your low back into the floor and brace.", "Slowly extend one arm overhead and the opposite leg away.", "Return under control and alternate."],
+  tip: "Trains the bracing you need to transfer force through your torso."
+}, {
+  phase: 2,
+  zone: "activate",
+  areas: ["back", "shoulders"],
+  sec: 40,
+  needs: "equip",
+  name: "Scapular Pulls / Band Pull-Aparts",
+  focus: "Activate",
+  cue: "Wake up the upper back and shoulder blades before pressing or pulling.",
+  steps: ["Hold a band at shoulder height with straight arms (or hang from a bar).", "Pull your shoulder blades down and together.", "Hold a beat, then release with control."],
+  tip: "Primes the upper back for pressing and pulling and protects the shoulders."
+}, {
+  phase: 2,
+  zone: "activate",
+  areas: ["core", "back"],
+  sec: 40,
   sides: 2,
-  intensity: 1,
-  name: "Twist the Waist",
-  focus: "Spine · Core",
-  cue: "Slow waist and hip circles to loosen the midsection.",
-  steps: ["Hands on your hips or lower back, feet shoulder-width.", "Circle your hips and waist slowly one way.", "After several circles, reverse.", "Keep your knees soft."],
-  tip: "Move from the waist, not just the hips."
+  name: "Bird Dogs",
+  focus: "Activate",
+  cue: "On all fours, extend opposite arm and leg while keeping your torso still.",
+  steps: ["On all fours, brace your midsection.", "Extend one arm forward and the opposite leg back.", "Keep your hips square and spine neutral.", "The app switches you to the other side."],
+  tip: "Anti-rotation control that transfers directly to running mechanics."
 }, {
-  zone: "spine",
-  areas: ["spine", "side"],
-  intensity: 1,
-  name: "Standing Side Bends",
-  focus: "Side body",
-  cue: "Reach up and over each side to lengthen the side body.",
-  steps: ["Reach one arm overhead.", "Lean gently to the opposite side, feeling a stretch along your ribs.", "Return through center and switch.", "Keep both feet grounded."],
-  tip: "Lengthen up and over rather than collapsing down."
-}, {
-  zone: "spine",
-  areas: ["spine", "side", "hips"],
-  intensity: 2,
-  name: "Swimming Dragon",
-  focus: "Spine · Flow",
-  cue: "Flowing S-curves through the spine and hips, like a swimming dragon.",
-  steps: ["Hands together at your chest, knees soft.", "Sweep your hands and hips in opposite S-curves, side to side.", "Let your whole spine undulate.", "Flow slowly and continuously."],
-  tip: "Fluid and playful — let the spine move freely."
-}, {
-  zone: "spine",
-  areas: ["spine", "back"],
-  intensity: 2,
-  name: "Knocking on the Door of Life",
-  focus: "Spine · Back",
-  cue: "Loose twisting with your arms tapping your lower back and belly.",
-  steps: ["Stand relaxed, arms loose.", "Twist side to side, letting your arms swing and slap gently — one hand taps your lower back, the other your belly.", "Let the arms be completely loose.", "Build an easy rhythm."],
-  tip: "The gentle tapping stimulates the lower back and kidneys."
-}, {
-  zone: "hips",
-  areas: ["hips"],
-  sec: 30,
+  phase: 2,
+  zone: "activate",
+  areas: ["calves", "ankles"],
+  sec: 40,
+  name: "Calf Raises",
+  focus: "Activate",
+  cue: "Rise onto the balls of your feet and lower slowly to prime the ankles.",
+  steps: ["Stand tall, feet hip-width.", "Rise onto the balls of your feet.", "Pause at the top, then lower slowly with control."],
+  tip: "Strong, stiff ankles are what transmit force into the ground."
+},
+// --- 3. MOBILIZE: dynamic range of motion through the movements you'll use ---
+{
+  phase: 3,
+  zone: "mobilize",
+  areas: ["hips", "hamstrings"],
+  sec: 40,
   sides: 2,
-  intensity: 1,
-  name: "Hip Circles",
-  focus: "Hips",
-  cue: "Big slow circles with the hips to open and lubricate the joint.",
-  steps: ["Hands on your hips, feet shoulder-width.", "Circle your hips in a big slow loop one direction.", "Reverse after several circles.", "Keep your upper body relatively still."],
-  tip: "Make the circles as large and smooth as feels good."
+  name: "Leg Swings (front-back)",
+  focus: "Mobilize",
+  cue: "Swing one leg freely forward and back through a growing range.",
+  steps: ["Hold a wall for balance, stand tall.", "Swing one leg forward and back in a relaxed arc.", "Let the range grow gradually — never force it.", "The app switches you to the other side."],
+  tip: "Dynamic range beats holding a stretch before training."
 }, {
-  zone: "hips",
+  phase: 3,
+  zone: "mobilize",
   areas: ["hips", "glutes"],
-  sec: 30,
+  sec: 40,
   sides: 2,
-  intensity: 2,
-  name: "Standing Hip Openers",
-  focus: "Hips",
-  cue: "Lift and circle each knee to open the hips.",
-  steps: ["Hold a wall for balance if needed.", "Lift one knee, then draw it out to the side and around, opening the hip.", "Do several, then switch legs.", "Move slowly and controlled."],
-  tip: "Great for loosening tight hips before or after leg work."
+  name: "Lateral Leg Swings",
+  focus: "Mobilize",
+  cue: "Swing one leg side to side across your body to open the hips.",
+  steps: ["Face a wall for balance.", "Swing one leg across your body and out to the side.", "Keep your torso tall and let the range build.", "The app switches you to the other side."],
+  tip: "Opens the hips in the frontal plane for lateral work."
 }, {
-  zone: "hips",
-  areas: ["hips"],
-  sec: 30,
+  phase: 3,
+  zone: "mobilize",
+  areas: ["hips", "spine", "quads"],
+  sec: 45,
   sides: 2,
-  intensity: 1,
-  name: "Figure-8 Hips",
-  focus: "Hips",
-  cue: "Trace a slow figure-8 with your hips to free the pelvis.",
-  steps: ["Feet a bit wider than your hips, knees soft.", "Trace a horizontal figure-8 with your hips.", "Let the motion flow smoothly through the pelvis.", "Reverse the direction of the 8."],
-  tip: "Relax and let the hips move freely and playfully."
+  name: "World's Greatest Stretch",
+  focus: "Mobilize",
+  cue: "Lunge, drop the elbow inside the front foot, then rotate open to the ceiling.",
+  steps: ["Step into a deep lunge.", "Bring the same-side elbow down toward the instep of the front foot.", "Rotate your torso and reach that arm to the ceiling.", "The app switches you to the other side."],
+  tip: "The single most efficient dynamic mobilizer — hips, spine, and hamstrings at once."
 }, {
-  zone: "legs",
-  areas: ["quads", "glutes", "hips"],
-  intensity: 2,
-  name: "Ballet Squats",
-  focus: "Legs",
-  cue: "Wide-stance plié squats with toes turned out, for the inner thighs and glutes.",
-  steps: ["Wide stance, toes turned out comfortably.", "Keeping your torso tall, bend your knees and lower straight down.", "Track your knees out over your toes.", "Rise squeezing your glutes, and flow."],
-  tip: "Knees point the same direction as your toes."
+  phase: 3,
+  zone: "mobilize",
+  areas: ["hamstrings", "calves"],
+  sec: 45,
+  name: "Inchworms",
+  focus: "Mobilize",
+  cue: "Fold, walk out to a plank, walk back — dynamic hamstring and shoulder prep.",
+  steps: ["Stand tall, hinge and place your hands on the floor.", "Walk your hands out to a plank.", "Walk your feet toward your hands, keeping the legs as straight as comfortable.", "Stand and repeat."],
+  tip: "Moves through the hamstrings without the power loss of a long static hold."
 }, {
-  zone: "legs",
-  areas: ["calves", "ankles"],
-  intensity: 2,
-  name: "Tip Toe Arm Swings",
-  focus: "Calves · Balance",
-  cue: "Rise onto your toes as you swing your arms up, building balance and calves.",
-  steps: ["Stand tall, feet together or hip-width.", "Swing both arms up in front as you rise onto the balls of your feet.", "Lower your heels as your arms swing down.", "Coordinate into one smooth motion."],
-  tip: "Use a wall for balance if you need it."
+  phase: 3,
+  zone: "mobilize",
+  areas: ["hips", "ankles"],
+  sec: 45,
+  name: "Deep Squat to Stand",
+  focus: "Mobilize",
+  cue: "Sink into a deep squat, hold briefly, then stand and repeat.",
+  steps: ["Feet a bit wider than hips, toes slightly out.", "Sink into your deepest comfortable squat.", "Press the knees open with your elbows for a beat.", "Stand tall and repeat, sinking a little deeper each time."],
+  tip: "Opens hips and ankles right before you load them."
 }, {
-  zone: "legs",
-  areas: ["knees", "quads"],
-  sec: 30,
-  sides: 2,
-  intensity: 1,
-  name: "Knee Circles",
-  focus: "Knees",
-  cue: "Gentle knee circles to warm and mobilize the joint.",
-  steps: ["Feet together, soft bend in the knees, hands resting on them.", "Circle your knees slowly one direction.", "Reverse after several circles.", "Keep the movement small and gentle."],
-  tip: "Especially gentle and controlled if your knees are sensitive."
-}, {
-  zone: "legs",
-  areas: ["balance", "legs", "hips"],
-  sec: 30,
-  sides: 2,
-  intensity: 2,
-  name: "Rooster Stand",
-  focus: "Balance",
-  cue: "Balance on one leg with the other lifted, building stability and focus.",
-  steps: ["Shift your weight onto one leg.", "Lift the other knee to hip height and hold, arms relaxed or floating.", "Keep a soft gaze and steady breath.", "Switch legs halfway."],
-  tip: "A wall nearby is fine — the point is calm, focused balance."
-}, {
-  zone: "legs",
-  areas: ["calves", "ankles"],
-  intensity: 2,
-  name: "Calf Pumps",
-  focus: "Calves · Ankles",
-  cue: "Rock through the feet, pumping the calves and ankles.",
-  steps: ["Stand tall, feet hip-width.", "Rise onto your toes, then rock back onto your heels, lifting the toes.", "Flow smoothly between the two.", "Keep a light, easy rhythm."],
-  tip: "Great circulation for the lower legs and ankles."
-}, {
-  zone: "shoulders",
-  areas: ["shoulders", "back"],
-  intensity: 1,
-  name: "Shoulder Blade Squeezes",
-  focus: "Upper back",
-  cue: "Draw your shoulder blades together and down, then release.",
-  steps: ["Stand or sit tall, arms relaxed.", "Gently squeeze your shoulder blades together and down your back.", "Hold a moment, feeling your chest open.", "Release and repeat slowly with your breath."],
-  tip: "Great for undoing a hunched, desk-bound posture."
-}, {
-  zone: "spine",
+  phase: 3,
+  zone: "mobilize",
   areas: ["spine", "shoulders"],
-  intensity: 1,
-  name: "Standing Cat-Cow",
-  focus: "Spine",
-  cue: "Round and arch your spine while standing, hands on your thighs.",
-  steps: ["Hands on your thighs, knees soft.", "Round your back and tuck your chin (cat).", "Then arch, lifting your chest and gaze (cow).", "Flow slowly between the two with your breath."],
-  tip: "Mobilizes the whole spine without getting on the floor."
-}, {
-  zone: "hips",
-  areas: ["hips", "quads"],
-  intensity: 2,
-  name: "Marching Hip Openers",
-  focus: "Hips",
-  cue: "Slow high marches with a pause to open the hip flexors.",
-  steps: ["Stand tall, holding a wall if needed.", "Drive one knee up and pause, feeling the standing-leg hip open.", "Lower with control and switch legs.", "Keep it slow and deliberate."],
-  tip: "Counteracts long hours of sitting."
-}, {
-  zone: "legs",
-  areas: ["ankles", "calves"],
-  sec: 30,
+  sec: 40,
   sides: 2,
-  intensity: 1,
+  name: "Open Books (thoracic)",
+  focus: "Mobilize",
+  cue: "Rotate your upper back open, following your hand with your eyes.",
+  steps: ["Lie on your side, knees bent, arms stacked in front.", "Sweep the top arm across and open your chest toward the ceiling.", "Follow your hand with your gaze, keeping the knees down.", "The app switches you to the other side."],
+  tip: "Thoracic rotation frees the shoulders for overhead work."
+}, {
+  phase: 3,
+  zone: "mobilize",
+  areas: ["ankles"],
+  sec: 35,
+  sides: 2,
   name: "Ankle Rocks",
-  focus: "Ankles",
-  cue: "Rock one knee forward over the toes to mobilize the ankle.",
-  steps: ["Stagger one foot forward, heel down.", "Rock that knee forward over your toes and back.", "Feel the stretch through the ankle and calf.", "The app switches you to the other side."],
-  tip: "Better ankle mobility means better squats and landings."
+  focus: "Mobilize",
+  cue: "Half-kneel and rock the knee forward over the toes.",
+  steps: ["Half-kneel with one foot flat in front.", "Rock the knee forward over the toes, heel down.", "Rock back and repeat, growing the range.", "The app switches you to the other side."],
+  tip: "Ankle range is a direct limiter of squat depth and sprint mechanics."
 }, {
-  zone: "upper",
-  areas: ["chest", "shoulders"],
-  intensity: 1,
-  name: "Chest Openers",
-  focus: "Chest",
-  cue: "Clasp your hands behind you and lift to open the chest.",
-  steps: ["Clasp your hands behind your lower back.", "Gently straighten your arms and lift your hands, opening your chest.", "Lift your gaze slightly and breathe into the front of your body.", "Release slowly."],
-  tip: "Opens up everything a hunched-forward day closes down."
-}, {
-  zone: "flow",
-  areas: ["breath"],
-  bookend: "open",
-  intensity: 1,
-  name: "Centering Breath",
-  focus: "Breath",
-  cue: "Float your arms up and down with slow breaths to gather your energy and settle in.",
-  steps: ["Stand feet shoulder-width, knees soft, arms relaxed.", "Inhale slowly as you float both arms up in front to shoulder height.", "Exhale as you gently press them back down, sinking your weight.", "Repeat at a slow, calm pace and let your breath lead."],
-  tip: "A calm, unforced open sets the tone for the whole practice."
-}, {
-  zone: "flow",
-  areas: [],
-  intensity: 2,
-  name: "Whole-Body Shaking",
-  focus: "Release",
-  cue: "Shake your whole body loose to release tension and stimulate circulation.",
-  steps: ["Stand with soft knees and let your whole body bounce and shake.", "Let your arms, hands, shoulders, and legs jiggle freely.", "Shake out any area that feels tight.", "Stay relaxed, breathe, and even let out a sigh."],
-  tip: "The looser and sillier it feels, the better it works."
-}, {
-  zone: "flow",
-  areas: ["breath"],
-  bookend: "close",
-  intensity: 1,
-  name: "Settle & Store",
-  focus: "Breath",
-  cue: "Slow breathing, drawing your hands to your lower belly to settle and finish.",
-  steps: ["Stand tall and still, feet shoulder-width.", "Inhale slowly as you float your arms out and up.", "Exhale as you draw your hands down toward your lower belly.", "Repeat a few times, then rest your hands over your lower belly and breathe."],
-  tip: "This calms the nervous system and closes the practice."
-}, {
-  zone: "flow",
+  phase: 3,
+  zone: "mobilize",
   areas: ["shoulders", "chest"],
-  intensity: 2,
-  name: "Arm Swings",
-  focus: "Shoulders",
-  cue: "Swing both arms freely forward and back to open the shoulders and get the blood moving.",
-  steps: ["Stand tall, feet shoulder-width.", "Swing both arms forward and up, then back behind you, in a relaxed rhythm.", "Let your breath match the swing.", "Gradually build a little pace to warm up."],
-  tip: "Loosens the shoulders and starts raising your heart rate."
-}, {
-  zone: "flow",
-  areas: ["spine", "hips"],
-  intensity: 2,
-  name: "Cloud Hands",
-  focus: "Flow",
-  cue: "Flowing side-to-side arm movements with a weight shift, like drifting clouds.",
-  steps: ["Stand a bit wider than your shoulders, knees soft.", "Shift your weight to one side as one hand rises past your face and the other floats low.", "Smoothly switch sides and swap the hands.", "Let it flow continuously with your breath."],
-  tip: "Keeps the whole body moving as a connected unit."
-}, {
-  zone: "flow",
-  areas: ["spine", "chest"],
-  intensity: 3,
-  name: "Wide Arm Step Backs",
-  focus: "Full body",
-  cue: "Step back and sweep your arms wide open — bigger and quicker to build some heat.",
-  steps: ["Start standing tall, arms in front.", "Step one foot back as you open both arms out wide.", "Return to center, then step back with the other foot, opening the arms.", "Alternate at a lively pace to raise the intensity."],
-  tip: "Open the chest fully and pick up the tempo to work up a light sweat."
-}, {
-  zone: "spine",
-  areas: ["spine"],
-  intensity: 2,
-  name: "Body Wave Step Backs",
-  focus: "Spine",
-  cue: "Ripple a wave through your spine as you step back, coordinated and flowing.",
-  steps: ["Stand tall with soft knees.", "As you step one foot back, ripple a wave through your spine.", "Return to center, then step back with the other foot with another wave.", "Keep it smooth and continuous."],
-  tip: "Connects breath, spine, and legs."
-}, {
-  zone: "spine",
-  areas: ["spine", "hips"],
-  intensity: 2,
-  name: "Golf Swings",
-  focus: "Full body",
-  cue: "Rotate and swing your arms across your body like a relaxed golf swing, shifting your weight.",
-  steps: ["Wider than shoulder-width, knees soft, hands loosely together.", "Rotate and swing across and up to one side, weight shifting onto that foot.", "Unwind and swing across to the other side.", "Flow back and forth, building a little pace."],
-  tip: "Warms the whole rotational chain — hips, waist, shoulders."
-}, {
-  zone: "hips",
-  areas: ["hips", "quads"],
-  intensity: 2,
+  sec: 40,
+  name: "Arm Circles & Swings",
+  focus: "Mobilize",
+  cue: "Big arm circles both directions, then swing the arms across the chest.",
+  steps: ["Make large slow circles forward, then backward.", "Then swing both arms open wide and cross them over the chest.", "Build the range and pace gradually."],
+  tip: "Dynamic shoulder prep — keeps the tissue warm rather than relaxed."
+},
+// --- 4. POTENTIATE: brief, sharp, explosive — primes the nervous system ---
+{
+  phase: 4,
+  zone: "potentiate",
+  areas: ["calves", "ankles"],
   sec: 30,
-  sides: 2,
-  name: "Leg Swings",
-  focus: "Hips",
-  cue: "Swing one leg freely front-to-back to open the hip dynamically.",
-  steps: ["Hold a wall for balance.", "Swing one leg forward and back in a relaxed arc.", "Keep your torso tall and let the leg stay loose.", "The app switches you to the other side."],
-  tip: "Dynamic hip mobility that primes the legs for work."
+  name: "Pogo Hops",
+  focus: "Potentiate",
+  cue: "Fast, stiff-ankle bounces with minimal ground contact time.",
+  steps: ["Stand tall, legs fairly straight and stiff.", "Bounce rapidly off the balls of your feet.", "Minimize time on the ground — quick and springy."],
+  tip: "Switches on the elastic, reactive qualities you're about to use."
 }, {
-  zone: "legs",
+  phase: 4,
+  zone: "potentiate",
+  areas: ["glutes", "quads"],
+  sec: 30,
+  name: "Countermovement Jumps",
+  focus: "Potentiate",
+  cue: "3–5 near-max jumps with a full reset — sharp, not fatiguing.",
+  steps: ["Dip quickly and jump as high as you can.", "Land soft and reset fully between reps.", "Only 3–5 quality reps — this primes, it doesn't tire."],
+  tip: "Post-activation potentiation: a few explosive reps make the main session sharper."
+}, {
+  phase: 4,
+  zone: "potentiate",
+  areas: ["quads", "glutes"],
+  sec: 30,
+  name: "Split-Stance Bounces",
+  focus: "Potentiate",
+  cue: "Small, quick switches between lunge stances — sharp and springy.",
+  steps: ["Drop into a shallow split stance.", "Bounce lightly and switch legs in the air.", "Keep it quick and light, never grinding."],
+  tip: "Primes single-leg power right before training."
+}, {
+  phase: 4,
+  zone: "potentiate",
   areas: ["quads", "calves"],
-  intensity: 3,
-  name: "High-Knee March",
-  focus: "Cardio",
-  cue: "March in place driving the knees up high, arms pumping, to raise the heart rate.",
-  steps: ["Stand tall and brace your middle.", "Drive one knee up to hip height, then the other, at a brisk pace.", "Pump your arms in opposition.", "Stay light on the balls of your feet."],
-  tip: "A sweat-builder heading into the main workout."
+  sec: 30,
+  name: "Fast Feet (in place)",
+  focus: "Potentiate",
+  cue: "Very quick, short choppy steps on the spot — pure turnover speed.",
+  steps: ["Stand in an athletic stance, knees soft.", "Chop your feet as fast as you can on the spot.", "Stay low and light, arms driving.", "Short, sharp bursts — this primes, it doesn't tire."],
+  tip: "Trains rapid ground contact without needing any space."
 }, {
-  zone: "flow",
-  areas: [],
-  intensity: 3,
-  name: "Half Jacks",
-  focus: "Cardio",
-  cue: "Low-impact jumping-jack arms with a step out, to build heat before training.",
-  steps: ["Stand tall, arms at your sides.", "Step one foot out as you sweep both arms overhead.", "Step back in and lower the arms; alternate feet.", "Build a steady, brisk rhythm — no jumping needed."],
-  tip: "Raises your heart rate with zero impact on the knees."
+  phase: 4,
+  zone: "potentiate",
+  areas: ["quads", "glutes"],
+  sec: 30,
+  name: "Tuck Jumps",
+  focus: "Potentiate",
+  cue: "3–5 sharp jumps driving the knees toward your chest, landing soft.",
+  steps: ["Stand tall, dip and jump.", "Drive both knees up toward your chest.", "Land softly and reset fully between reps.", "Only 3–5 quality reps."],
+  tip: "Explosive and entirely in place."
+}, {
+  phase: 4,
+  zone: "potentiate",
+  areas: ["back", "biceps"],
+  sec: 30,
+  needs: "equip",
+  name: "Explosive Pulls",
+  focus: "Potentiate",
+  cue: "A few fast, powerful pull-ups or hard band rows to prime the back.",
+  steps: ["Hang from a bar, or anchor a band at chest height.", "Pull explosively and fast — drive the elbows down and back.", "Lower under control and reset.", "Only 3–5 sharp reps — this primes, it doesn't tire."],
+  tip: "Use this before pulling work so the back is switched on and fast."
+}, {
+  phase: 4,
+  zone: "potentiate",
+  areas: ["shoulders", "chest"],
+  sec: 30,
+  needs: "equip",
+  name: "Fast Band Presses",
+  focus: "Potentiate",
+  cue: "Quick, explosive presses against a band to potentiate the shoulders.",
+  steps: ["Anchor a band behind you, or press explosively with light dumbbells.", "Press fast and sharp, then return under control.", "Keep the reps crisp — 5 or so per set.", "Stop well short of fatigue."],
+  tip: "Primes overhead and pressing power before your working sets."
+}, {
+  phase: 4,
+  zone: "potentiate",
+  areas: ["core", "chest"],
+  sec: 30,
+  name: "Explosive Push-ups / Claps",
+  focus: "Potentiate",
+  cue: "A few sharp, explosive push-ups to potentiate the upper body.",
+  steps: ["Set up in a push-up position (knees down is fine).", "Lower under control, then push explosively so the hands leave the floor.", "3–5 sharp reps only — quality, not fatigue."],
+  tip: "Use this on upper-body days to prime pressing power."
 }];
 
-// Which mobility areas yesterday's training loaded (for next-day qi gong bias).
+// Which mobility areas yesterday's training loaded (biases the next day's warm-up).
 const CALI_TARGET = {
   pushCore: ["shoulders", "chest", "spine"],
   lower: ["hips", "quads", "hamstrings", "glutes", "calves", "knees"],
   pull: ["back", "shoulders", "spine"],
   full: ["shoulders", "hips", "spine", "quads", "chest"]
 };
+// What TODAY's session demands — the warm-up primes these areas (both modes).
+const WARMUP_FOR = {
+  // home mode
+  pushCore: ["chest", "shoulders", "triceps", "core"],
+  lower: ["quads", "glutes", "hips", "ankles", "calves"],
+  pull: ["back", "biceps", "shoulders", "spine"],
+  full: ["chest", "shoulders", "quads", "glutes", "core"],
+  // elite mode
+  ePush: ["chest", "shoulders", "triceps", "core"],
+  ePull: ["back", "biceps", "shoulders", "spine"],
+  eLegs: ["quads", "glutes", "hips", "ankles", "calves"],
+  eUpper: ["chest", "back", "shoulders", "biceps", "triceps"],
+  eLower: ["hamstrings", "glutes", "hips", "calves", "core"]
+};
+const POWER_WARMUP = ["hips", "quads", "hamstrings", "glutes", "calves", "ankles"];
 const SPRINT_TARGET = ["calves", "ankles", "quads", "hips", "knees"];
 
 // Movement-group key: only clear cross-program duplicates share a key; everything else
@@ -3112,52 +3881,170 @@ function mgKey(name) {
 // moves tailored to yesterday's input (worked / tight / sore / mobility), spread across
 // zones, with breath/settle as optional open/close if they get picked.
 function dailyQiGong(target, dayNum, count, avoid) {
-  count = count || 15;
+  count = count || 12;
   avoid = avoid || [];
-  const pool = QI_POOL.filter(p => !(p.pat && avoid.includes(p.pat)));
-  const scored = pool.map((p, i) => ({
-    p,
-    score: p.areas.filter(a => target.includes(a)).length * 100 + (p.intensity || 1) * 5 + (i + (dayNum || 0)) % pool.length
-  }));
-  scored.sort((a, b) => b.score - a.score);
-  const picked = [],
-    zc = {};
-  const cap = Math.max(2, Math.ceil(count / 5) + 1);
-  for (const s of scored) {
-    const z = s.p.zone;
-    if ((zc[z] || 0) >= cap) continue;
-    picked.push(s.p);
-    zc[z] = (zc[z] || 0) + 1;
-    if (picked.length >= count) break;
-  }
-  if (picked.length < count) for (const s of scored) {
-    if (!picked.includes(s.p)) {
-      picked.push(s.p);
-      if (picked.length >= count) break;
-    }
-  }
-  // Guarantee the practice builds: ensure at least a couple of sweat-building moves are in.
-  const dyn = pool.filter(p => (p.intensity || 1) >= 3 && !picked.includes(p));
-  let di = 0;
-  while (picked.filter(p => (p.intensity || 1) >= 3).length < 2 && di < dyn.length) {
-    const idx = picked.findIndex(p => (p.intensity || 1) === 1 && !p.bookend);
-    if (idx === -1) break;
-    picked.splice(idx, 1, dyn[di++]);
-  }
-  // Order the arc: loosen up first (low intensity), build a sweat toward the end (high),
-  // with breath opening and settle closing if they were picked.
-  const open = picked.find(p => p.bookend === "open");
-  const close = picked.find(p => p.bookend === "close");
-  let seq = picked.filter(p => !p.bookend);
-  seq.sort((a, b) => (a.intensity || 1) - (b.intensity || 1));
-  if (open) seq = [open, ...seq];
-  if (close) seq = [...seq, close];
+  const pool = QI_POOL.filter(p => !(p.pat && avoid.includes(p.pat)) && !(avoid.includes("equip") && p.needs === "equip"));
+  const day = dayNum || 0;
+  // RAMP quotas: always Raise -> Activate -> Mobilize -> Potentiate, scaled to session length.
+  const share = {
+    1: 0.17,
+    2: 0.25,
+    3: 0.33,
+    4: 0.25
+  };
+  const quota = {};
+  [1, 2, 3, 4].forEach(ph => {
+    quota[ph] = Math.max(1, Math.round(count * share[ph]));
+  });
+  const seq = [];
+  [1, 2, 3, 4].forEach(ph => {
+    const cands = pool.filter(p => p.phase === ph);
+    // Bias toward areas flagged tight/sore/mobility-limited, then rotate by day for variety.
+    const scored = cands.map((p, i) => ({
+      p,
+      score: p.areas.filter(a => target.includes(a)).length * 100 + (i + day) % cands.length
+    }));
+    scored.sort((a, b) => b.score - a.score);
+    seq.push(...scored.slice(0, Math.min(quota[ph], cands.length)).map(s => s.p));
+  });
   return seq;
 }
 
 /* ---------- HOW-TO INSTRUCTIONS ---------- */
 // Keyed by movement pattern. Variants (slow, weighted, per-side, etc.) map here via ALIAS.
 const HOWTO = {
+  "hip flexor raise": {
+    steps: ["Lie flat on your back with your legs straight.", "Press your low back firmly into the floor and brace.", "Lift both straight legs toward vertical.", "Lower slowly, stopping before your back arches off the floor."],
+    watch: "The low back peeling off the floor — shorten the range before that happens."
+  },
+  "knee drive": {
+    steps: ["Stand tall, weight on one leg, near a wall for balance.", "Drive the other knee up to hip height as fast as you can.", "Lower it under control.", "Every rep is a maximum-speed effort — this is a power exercise, not an endurance one."],
+    watch: "Leaning back as the knee comes up — stay tall so the hip flexor does the work."
+  },
+  "kick through": {
+    steps: ["Stand in a split stance, holding a wall or chair for balance.", "Let the back leg swing behind you into full hip extension.", "Swing it forward fast into a controlled kicking motion.", "Keep your torso tall and let the hip do the work."],
+    watch: "Arching the low back instead of extending the hip — keep the ribs down."
+  },
+  "side lying adduction": {
+    steps: ["Lie on your side, propped on your forearm.", "Cross the top leg over and rest that foot flat on the floor in front.", "Keeping the bottom leg straight, lift it up toward the ceiling.", "Lower slowly; switch sides."],
+    watch: "Rolling backward — stay stacked so the inner thigh does the lifting."
+  },
+  "copenhagen": {
+    steps: ["Lie on your side, propped on your forearm with the elbow under your shoulder.", "Rest the inside of your top knee (easier) or top foot (harder) on a chair or bed edge.", "Lift your hips and bottom leg up so your body makes a straight line.", "Lower under control and repeat; switch sides."],
+    watch: "This one is genuinely hard — start with the knee-supported version. Expect soreness the first week or two."
+  },
+  "ytw raise": {
+    steps: ["Lie face-down with your forehead resting on the mat.", "Lift your arms into a Y overhead, squeezing the shoulder blades, and lower.", "Then out to a T, and lower.", "Then a W with elbows bent, and lower. That's one round."],
+    watch: "Shrugging toward the ears — keep the shoulder blades pulling down and together."
+  },
+  "external rotation": {
+    steps: ["Lie on your side with the working arm on top, elbow pinned to your ribs and bent 90°.", "Keeping the elbow glued to your side, rotate the forearm up toward the ceiling.", "Pause, then lower slowly.", "Switch sides."],
+    watch: "The elbow drifting away from the ribs — tuck a towel there if it helps."
+  },
+  "prone external rotation": {
+    steps: ["Lie face-down on a bench or bed with the working arm hanging off, upper arm out at 90°.", "Bend the elbow 90° so the forearm hangs down.", "Rotate the forearm up and back until level with your body.", "Lower slowly with control."],
+    watch: "Going too heavy or too fast — the cuff responds to strict, slow work."
+  },
+  "antirotation hold": {
+    steps: ["Kneel on one knee, torso tall and braced.", "Press your hands straight out in front of your chest.", "Resist any urge to twist — hold rigid against the rotation.", "Breathe throughout; switch sides."],
+    watch: "Letting the ribs flare or the hips twist — stay square."
+  },
+  "rotational chop": {
+    steps: ["Stand in an athletic stance, knees soft.", "Rotate and chop your hands diagonally across your body, from high on one side to low on the other.", "Pivot the back foot and drive the rotation from your hips.", "Return under control and repeat, then switch directions."],
+    watch: "Arm-only rotation — the power comes from the hips and trunk, not the shoulders."
+  },
+  "side plank": {
+    steps: ["Lie on your side, forearm on the floor with the elbow directly under your shoulder.", "Stack your feet (or drop the bottom knee for the easier version).", "Lift your hips so your body makes one straight line from head to feet.", "Brace your side abs, breathe steadily, and hold."],
+    watch: "Hips sagging toward the floor, or rolling forward/backward — stay stacked in one plane."
+  },
+  "side plank reach through": {
+    steps: ["Set up in a side plank with your top arm reaching toward the ceiling.", "Rotate your torso and thread the top arm underneath your body.", "Rotate back and reach tall again.", "Keep your hips lifted the whole time."],
+    watch: "Letting the hips drop as you rotate — the lift is what makes it work."
+  },
+  "step up": {
+    steps: ["Stand facing a sturdy knee-height (or lower) surface.", "Place one whole foot on it, keeping the shin fairly vertical.", "Drive through that top foot to stand tall — minimize pushing off the bottom foot.", "Lower under control and repeat on the same side."],
+    watch: "Bouncing off the back foot, or the front knee caving inward as you rise."
+  },
+  "split squat": {
+    steps: ["Take a long staggered stance, feet about hip-width apart side to side.", "Keep your torso tall and lower straight down until the back knee nears the floor.", "Drive through the front heel to stand back up.", "Finish all the reps on one side, then switch."],
+    watch: "Drifting forward over the front foot — the movement is straight down, not forward."
+  },
+  "bulgarian split squat": {
+    steps: ["Stand a stride's length in front of a bench or chair and place the top of your rear foot on it.", "Keep your torso tall, lower straight down over the front leg.", "Descend until the front thigh is about parallel, then drive up through the front heel.", "Complete the reps, then switch legs."],
+    watch: "Too short a stance (crowds the front knee) or letting the front knee collapse inward."
+  },
+  "skater squat": {
+    steps: ["Balance on one leg with the other bent behind you.", "Hinge and lower, reaching the back knee down toward the floor behind you and your arms forward to counterbalance.", "Tap lightly (or hover) and drive back up through the standing heel.", "Complete the reps, then switch."],
+    watch: "Rushing it — this is a balance-heavy movement; go slow and keep the knee tracking over the toes."
+  },
+  "incline push up": {
+    steps: ["Place your hands on a sturdy raised surface, slightly wider than your shoulders.", "Walk your feet back so your body is one straight line.", "Lower your chest to the surface with elbows about 45°, then press back up."],
+    watch: "The higher the surface, the easier — pick a height where you can control every rep."
+  },
+  "wide push up": {
+    steps: ["Set up in a push-up position with your hands noticeably wider than your shoulders.", "Keep your body in one straight line (knees down is fine).", "Lower your chest toward the floor, feeling it across the chest.", "Press back up without letting the hips sag."],
+    watch: "Flaring the elbows to a full 90° — keep a little tuck to protect the shoulders."
+  },
+  "decline push up": {
+    steps: ["Place your feet on a raised surface with your hands on the floor.", "Keep a straight line from head to heels and brace hard.", "Lower your chest toward the floor, then press back up."],
+    watch: "Hips piking up — the higher the feet, the more the shoulders work, so keep the line honest."
+  },
+  "pseudo planche push up": {
+    steps: ["Set up in a push-up position with your hands down beside your waist, fingers turned slightly out.", "Lean your shoulders forward well past your hands.", "Keeping that forward lean, lower under control and press back up.", "Keep your body in one rigid line."],
+    watch: "Losing the forward lean as you fatigue — the lean is the whole exercise."
+  },
+  "self resisted curl": {
+    steps: ["Place your free hand on top of the curling wrist.", "Curl the working arm up while pressing down firmly with the other hand.", "Resist just as hard on the way down.", "Keep the working elbow pinned to your side throughout."],
+    watch: "Using too little resistance — you should be genuinely straining through the full range."
+  },
+  "isometric curl hold": {
+    steps: ["Bend the working arm to about 90°.", "Press down hard against that forearm with your other hand.", "Hold the position while pushing maximally against yourself.", "Breathe throughout; switch sides when the timer chimes."],
+    watch: "Holding your breath — keep breathing through the hold."
+  },
+  "biceps curl": {
+    steps: ["Stand tall holding the weight with your palms facing forward.", "Keep your elbows pinned at your sides.", "Curl up by bending the elbows only, squeezing at the top.", "Lower slowly and fully straighten the arms."],
+    watch: "Swinging the hips or letting the elbows drift forward — keep it strict."
+  },
+  "incline curl": {
+    steps: ["Sit back on an inclined bench with your arms hanging straight down.", "Keeping your upper arms still, curl the weights up.", "Squeeze at the top, then lower slowly to a full stretch.", "Keep your shoulders back against the bench."],
+    watch: "Shrugging the shoulders forward — the stretch at the bottom is the point."
+  },
+  "chin up": {
+    steps: ["Hang from a bar with an underhand grip, hands about shoulder-width.", "Pull your shoulder blades down, then pull your chin over the bar.", "Keep your body from swinging.", "Lower under control to a full hang."],
+    watch: "Kipping or half reps — full hang to chin over the bar."
+  },
+  "inverted row": {
+    steps: ["Set a bar (or use a sturdy table edge) at waist height and lie underneath it.", "Grip it and hang with your body in a straight line, heels on the floor.", "Pull your chest to the bar, squeezing your shoulder blades together.", "Lower under control."],
+    watch: "Hips sagging — squeeze the glutes and keep one line from head to heels."
+  },
+  "lateral raise": {
+    steps: ["Stand tall with your arms at your sides, a slight bend in the elbows.", "Raise your arms out to the sides until they reach shoulder height.", "Pause briefly at the top.", "Lower slowly and under control."],
+    watch: "Swinging or shrugging — keep the traps down and let the side delts do the work."
+  },
+  "side lying lateral raise": {
+    steps: ["Lie on your side with the top arm resting along your body.", "Raise that arm up toward the ceiling, leading with the elbow slightly.", "Stop around vertical and pause.", "Lower slowly; switch sides when the timer chimes."],
+    watch: "Rolling backward — keep your torso stacked so the shoulder does the work."
+  },
+  "upright row": {
+    steps: ["Hold the bar with a grip wider than shoulder-width.", "Pull it up toward your chest with the elbows leading.", "Stop at about chest height.", "Lower under control."],
+    watch: "Pulling too high or with a narrow grip can pinch the shoulder — stay wide and stop at chest height. Skip it if you feel any pinching."
+  },
+  "pike shoulder taps": {
+    steps: ["Start in a downward-dog / pike position with hips high.", "Brace your core so your hips stay still.", "Lift one hand and tap the opposite shoulder.", "Return it and alternate."],
+    watch: "Letting the hips rock side to side — the stiller they are, the harder the shoulders work."
+  },
+  "glute ham march": {
+    steps: ["Lie on your back and drive into a glute bridge, hips high.", "Keeping your hips level and lifted, pick one foot off the floor.", "Lower it and switch to the other.", "Continue marching without letting the hips drop or tilt."],
+    watch: "Hips sinking or one side dropping as you lift the foot."
+  },
+  "sliding leg curl": {
+    steps: ["Lie on your back with your heels on a towel or sliders, knees bent.", "Bridge your hips up and hold them high.", "Slowly slide your heels away until your legs are nearly straight.", "Curl them back in, keeping your hips lifted the entire time."],
+    watch: "Letting the hips drop as the legs extend — hold the bridge throughout."
+  },
+  "nordic curl": {
+    steps: ["Kneel with your feet anchored securely under something solid.", "Keep a straight line from knees to head, squeezing your glutes.", "Lower your torso forward as slowly as you can control.", "Catch yourself with your hands, then push back to the start."],
+    watch: "Bending at the hips — the body stays in one straight line. Only lower as far as you can control."
+  },
   "push up": {
     steps: ["Hands flat, slightly wider than your shoulders; body in a straight line (head-to-heels, or head-to-knees for the knee version).", "Brace your core and squeeze your glutes.", "Bend your elbows to about 45° from your body and lower until your chest is just above the floor.", "Press back up to straight arms."],
     watch: "Don't let your hips sag or your head drop forward — keep one straight line."
@@ -3407,6 +4294,50 @@ const HOWTO = {
 
 // Maps cleaned exercise names to a HOWTO base key.
 const HOWTO_ALIAS = {
+  "lying straight leg raises": "hip flexor raise",
+  "explosive knee drives": "knee drive",
+  "kick throughs": "kick through",
+  "side lying adduction": "side lying adduction",
+  "copenhagen plank": "copenhagen",
+  "copenhagen adduction": "copenhagen",
+  "prone y t w raises": "ytw raise",
+  "side lying external rotation": "external rotation",
+  "prone 90 90 external rotation": "prone external rotation",
+  "side plank with reach through": "side plank reach through",
+  "half kneeling anti rotation hold": "antirotation hold",
+  "explosive rotational chops": "rotational chop",
+  "side plank knees": "side plank",
+  "side plank": "side plank",
+  "side plank reach through": "side plank reach through",
+  "step ups": "step up",
+  "step ups low": "step up",
+  "bulgarian split squat": "bulgarian split squat",
+  "split squats": "split squat",
+  "deep split squats": "split squat",
+  "skater squats": "skater squat",
+  "incline push ups": "incline push up",
+  "wide push ups": "wide push up",
+  "decline push ups": "decline push up",
+  "pseudo planche push ups": "pseudo planche push up",
+  "towel band curls": "self resisted curl",
+  "self resisted curls": "self resisted curl",
+  "isometric curl holds": "isometric curl hold",
+  "db biceps curl": "biceps curl",
+  "barbell curl": "biceps curl",
+  "db incline curl": "incline curl",
+  "chin ups": "chin up",
+  "inverted row": "inverted row",
+  "band lateral raises": "lateral raise",
+  "lateral raises": "lateral raise",
+  "lateral raise": "lateral raise",
+  "db lateral raise": "lateral raise",
+  "side lying lateral raise": "side lying lateral raise",
+  "barbell upright row": "upright row",
+  "pike shoulder taps": "pike shoulder taps",
+  "glute ham march": "glute ham march",
+  "sliding leg curls": "sliding leg curl",
+  "single leg sliding curls": "sliding leg curl",
+  "nordic curl": "nordic curl",
   "knee push ups": "push up",
   "push ups": "push up",
   "archer push ups": "push up",
@@ -3500,18 +4431,6 @@ function computeStreak(h) {
   }
   return s;
 }
-function bestStreak(h) {
-  const days = Object.keys(h).filter(k => h[k]).sort();
-  let best = 0,
-    run = 0,
-    prev = null;
-  for (const k of days) {
-    if (prev && keyOf(addDays(new Date(prev), 1)) === k) run++;else run = 1;
-    best = Math.max(best, run);
-    prev = k;
-  }
-  return best;
-}
 
 /* ---------- STORAGE ---------- */
 const __mem = {};
@@ -3533,7 +4452,7 @@ const store = {
   }
 };
 
-/* soft synthesized chime, shared by stretch + qi gong timers */
+/* soft synthesized chime, shared by every timed flow */
 function useChime() {
   const acRef = React.useRef(null);
   const ensure = () => {
@@ -3578,41 +4497,6 @@ function useChime() {
 }
 
 /* ---------- UI BITS ---------- */
-function Stat({
-  icon: Icon,
-  value,
-  label,
-  color
-}) {
-  return /*#__PURE__*/React.createElement("div", {
-    className: "flex-1 rounded-2xl p-4",
-    style: {
-      background: C.panel,
-      border: `1px solid ${C.line}`
-    }
-  }, /*#__PURE__*/React.createElement(Icon, {
-    size: 18,
-    style: {
-      color: color || C.accent
-    }
-  }), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontFamily: display,
-      fontSize: 32,
-      lineHeight: 1,
-      marginTop: 10,
-      color: C.text
-    }
-  }, value), /*#__PURE__*/React.createElement("div", {
-    style: {
-      color: C.mut,
-      fontSize: 11,
-      marginTop: 4,
-      letterSpacing: ".04em",
-      textTransform: "uppercase"
-    }
-  }, label));
-}
 function Tab({
   active,
   onClick,
@@ -3811,6 +4695,11 @@ function App() {
   const [foamHistory, setFoamHistory] = useState({});
   const [reports, setReports] = useState({});
   const [schedule, setSchedule] = useState(DEFAULT_SCHEDULE);
+  const [mode, setMode] = useState("home");
+  const [blockStart, setBlockStart] = useState("");
+  const [sprintBoost, setSprintBoost] = useState(false);
+  const [loads, setLoads] = useState({});
+  const [volume, setVolume] = useState({});
   const [tight, setTight] = useState(null);
   const [injuries, setInjuries] = useState([]);
   const [equipment, setEquipment] = useState("bodyweight");
@@ -3865,13 +4754,31 @@ function App() {
       if (rp) try {
         setReports(JSON.parse(rp));
       } catch {}
+      const md = await store.get("cali:mode");
+      const curMode = md === "gym" || md === "elite" ? "gym" : "home";
+      if (md) setMode(curMode);
+      const sb = await store.get("cali:sprintBoost");
+      if (sb) setSprintBoost(sb === "1");
+      const bs = await store.get("cali:blockStart");
+      if (bs) setBlockStart(bs);
+      const ld = await store.get("cali:loads");
+      if (ld) try {
+        setLoads(JSON.parse(ld));
+      } catch {}
+      const vol = await store.get("cali:volume");
+      if (vol) try {
+        setVolume(JSON.parse(vol));
+      } catch {}
       const scd = await store.get("cali:schedule");
       if (scd) try {
         const a = JSON.parse(scd);
-        if (validSchedule(a)) setSchedule(a);
-      } catch {}
+        if (validSchedule(a, curMode)) setSchedule(a);else setSchedule(defaultSchedule(curMode));
+      } catch {
+        setSchedule(defaultSchedule(curMode));
+      } else setSchedule(defaultSchedule(curMode));
       if (tg) try {
-        setTight(JSON.parse(tg).area);
+        const t = JSON.parse(tg);
+        if (t.date === tk) setTight(t.area);
       } catch {}
       if (inj) try {
         const a = JSON.parse(inj);
@@ -3884,11 +4791,14 @@ function App() {
   }, []);
   const tk = todayKey();
   const wd = new Date().getDay();
-  const dayPlan = planFor(wd, schedule);
+  const dayPlan = planFor(wd, schedule, mode);
   const weekNum = Math.floor(Date.now() / 86400000 / 7);
+  const osWeek = mode === "gym" ? offseasonWeek(blockStart) : null;
+  const phase = osWeek ? phaseForWeek(osWeek) : null;
   const plan = dayPlan.caliFocus ? {
-    ...DAYS[dayPlan.caliFocus],
-    slots: buildSlots(dayPlan.caliFocus, weekNum, dayPlan.short)
+    ...(DAYS[dayPlan.caliFocus] || DAYS.pushCore),
+    type: "workout",
+    slots: buildSlots(dayPlan.caliFocus, weekNum, dayPlan.short, mode)
   } : DAYS.pushCore;
   const done = !!history[tk];
   const stretchDone = !!stretchHistory[tk];
@@ -3908,11 +4818,11 @@ function App() {
     foamroll: foamDone
   };
 
-  // Adaptive qi gong: bias today's rotating moves toward areas worked or reported
+  // Adaptive warm-up: bias today's moves toward areas worked or reported
   // tight/sore yesterday. Recomputed when yesterday's signals change.
   const dayNum = Math.floor(Date.now() / 86400000);
   const yk = keyOf(addDays(new Date(), -1));
-  const yPlan = planFor((wd + 6) % 7, schedule);
+  const yPlan = planFor((wd + 6) % 7, schedule, mode);
   const qigongToday = React.useMemo(() => {
     const t = new Set();
     if (yPlan.caliFocus && history[yk]) (CALI_TARGET[yPlan.caliFocus] || []).forEach(a => t.add(a));
@@ -3923,21 +4833,22 @@ function App() {
       (r.sore || []).forEach(a => t.add(a));
       (r.mobility || []).forEach(a => t.add(a));
     }
-    return dailyQiGong([...t], dayNum, dayPlan.short ? 15 : 20);
-  }, [yk, dayNum, history, sprintHistory, reports]);
+    // Prime what TODAY's session actually demands.
+    if (dayPlan.caliFocus) (WARMUP_FOR[dayPlan.caliFocus] || []).forEach(a => t.add(a));
+    if (dayPlan.activities.includes("sprints")) POWER_WARMUP.forEach(a => t.add(a));
+    return dailyQiGong([...t], dayNum, dayPlan.weekend ? 14 : 12, mode === "home" && !dayPlan.weekend ? ["equip"] : []);
+  }, [yk, dayNum, history, sprintHistory, reports, dayPlan.caliFocus, mode]);
 
-  // Yesterday's check-in drives every routine today (not just qi gong).
+  // Yesterday's check-in drives every routine today.
   const yRep = reports[yk] || {};
   const surveyAreas = [...new Set([...(yRep.tight || []), ...(yRep.sore || []), ...(yRep.mobility || [])])];
   const kneeReported = surveyAreas.includes("knees");
-  // stretch focus: map survey areas to available focus stretches
+  // Cool-down focus: pass through any area the combined flow covers directly, and map
+  // the few that it doesn't onto the nearest area it does.
   const STRETCH_MAP = {
-    neck: "shoulders",
-    knees: "quads",
-    ankles: "calves",
-    spine: "back"
+    knees: "quads"
   };
-  const surveyFocus = [...new Set(surveyAreas.map(a => STRETCH_EXTRAS[a] ? a : STRETCH_MAP[a]).filter(Boolean))];
+  const surveyFocus = [...new Set(surveyAreas.map(a => FLOW_AREAS.has(a) ? a : STRETCH_MAP[a]).filter(Boolean))];
   // calisthenics: ease areas reported SORE yesterday (temporary, one-day)
   const SORE_REGION = {
     knees: "knee",
@@ -3977,11 +4888,11 @@ function App() {
   }, surveyLabels.join(", ")), " today — spend a little longer there.")) : null;
 
   // Combined Yoga & Stretch: a daily-varied kinetic-chain flow, biased to flagged areas,
-  // that avoids anything qi gong already covered (favor qi gong).
+  // that avoids anything the warm-up already covered (warm-up takes priority).
   const usedMG = new Set(qigongToday.map(it => mgKey(it.name)));
   const yogaItems = (dayPlan.short ? YOGA_MOB : YOGA).filter(it => !usedMG.has(mgKey(it.name))); // still used by the openable standalone yoga view
-  const flowTarget = [...new Set([tight, ...surveyFocus, ...(yRep.mobility || []), ...(yRep.tight || []), ...(yRep.sore || [])].filter(Boolean))];
-  const flowItems = dailyFlow(flowTarget, dayNum, 16).filter(it => !usedMG.has(mgKey(it.name)));
+  const flowTarget = [...new Set([tight, ...surveyFocus, ...(yRep.mobility || []), ...(yRep.tight || []), ...(yRep.sore || []), ...(dayPlan.weekend ? ["hips", "quads", "hamstrings", "glutes", "calves", "ankles"] : [])].filter(Boolean))];
+  const flowItems = dailyFlow(flowTarget, dayNum, dayPlan.weekend ? 20 : mode === "gym" ? 14 : 16).filter(it => !usedMG.has(mgKey(it.name)));
   const nextInfo = id => {
     const acts = dayPlan.activities;
     const i = acts.indexOf(id);
@@ -4010,13 +4921,38 @@ function App() {
     setDraftInj(n);
     await store.set("cali:injuries", JSON.stringify(n));
   };
-  const finishWorkout = async () => {
+  const finishWorkout = async sessionVolume => {
     const n = {
       ...history,
       [tk]: true
     };
     setHistory(n);
     await store.set("cali:history", JSON.stringify(n));
+    if (sessionVolume) {
+      const v = {
+        ...volume,
+        [tk]: sessionVolume
+      };
+      setVolume(v);
+      await store.set("cali:volume", JSON.stringify(v));
+    }
+  };
+  const toggleSprintBoost = async () => {
+    const v = !sprintBoost;
+    setSprintBoost(v);
+    await store.set("cali:sprintBoost", v ? "1" : "0");
+  };
+  const saveBlockStart = async v => {
+    setBlockStart(v);
+    await store.set("cali:blockStart", v);
+  };
+  const saveLoad = async (name, entry) => {
+    const n = {
+      ...loads,
+      [name]: entry
+    };
+    setLoads(n);
+    await store.set("cali:loads", JSON.stringify(n));
   };
   const undoWorkout = async () => {
     const n = {
@@ -4125,7 +5061,7 @@ function App() {
   // Assign a day-type to a weekday by SWAPPING with wherever that type currently sits, so
   // the week always keeps exactly one of each type.
   const assignDay = async (weekday, templateId) => {
-    const cur = validSchedule(schedule) ? [...schedule] : [...DEFAULT_SCHEDULE];
+    const cur = validSchedule(schedule, mode) ? [...schedule] : [...defaultSchedule(mode)];
     const from = cur.indexOf(templateId);
     if (from === -1 || from === weekday) return;
     const tmp = cur[weekday];
@@ -4135,8 +5071,19 @@ function App() {
     await store.set("cali:schedule", JSON.stringify(cur));
   };
   const resetSchedule = async () => {
-    setSchedule(DEFAULT_SCHEDULE);
-    await store.set("cali:schedule", JSON.stringify(DEFAULT_SCHEDULE));
+    const d = defaultSchedule(mode);
+    setSchedule(d);
+    await store.set("cali:schedule", JSON.stringify(d));
+  };
+  const chooseMode = async m => {
+    setMode(m);
+    await store.set("cali:mode", m);
+    const d = defaultSchedule(m);
+    setSchedule(d);
+    await store.set("cali:schedule", JSON.stringify(d));
+    const eq = m === "home" ? "bodyweight" : equipment === "bodyweight" ? "dumbbell" : equipment;
+    setEquipment(eq);
+    await store.set("cali:equipment", eq);
   };
   const pickTight = async area => {
     setTight(area);
@@ -4165,7 +5112,13 @@ function App() {
     sprintHistory,
     walkHistory,
     foamHistory,
-    reports
+    reports,
+    loads,
+    volume,
+    schedule,
+    mode,
+    blockStart,
+    sprintBoost
   });
   const doExport = () => setExportText(JSON.stringify(snapshot()));
   const doImport = async () => {
@@ -4180,7 +5133,7 @@ function App() {
       ...(cur || {}),
       ...(inc || {})
     }); // union of days; never drops existing
-    const H = [["history", history, setHistory, "cali:history"], ["stretchHistory", stretchHistory, setStretchHistory, "cali:stretchHistory"], ["qiHistory", qiHistory, setQiHistory, "cali:qiHistory"], ["yogaHistory", yogaHistory, setYogaHistory, "cali:yogaHistory"], ["sprintHistory", sprintHistory, setSprintHistory, "cali:sprintHistory"], ["walkHistory", walkHistory, setWalkHistory, "cali:walkHistory"], ["foamHistory", foamHistory, setFoamHistory, "cali:foamHistory"], ["reports", reports, setReports, "cali:reports"]];
+    const H = [["history", history, setHistory, "cali:history"], ["stretchHistory", stretchHistory, setStretchHistory, "cali:stretchHistory"], ["qiHistory", qiHistory, setQiHistory, "cali:qiHistory"], ["yogaHistory", yogaHistory, setYogaHistory, "cali:yogaHistory"], ["sprintHistory", sprintHistory, setSprintHistory, "cali:sprintHistory"], ["walkHistory", walkHistory, setWalkHistory, "cali:walkHistory"], ["foamHistory", foamHistory, setFoamHistory, "cali:foamHistory"], ["reports", reports, setReports, "cali:reports"], ["loads", loads, setLoads, "cali:loads"], ["volume", volume, setVolume, "cali:volume"]];
     for (const [key, cur, setter, sk] of H) {
       if (d[key] && typeof d[key] === "object") {
         const m = merge(cur, d[key]);
@@ -4245,6 +5198,54 @@ function App() {
       }
     }, "Set up", /*#__PURE__*/React.createElement("br", null), "your program"), /*#__PURE__*/React.createElement(SectionLabel, {
       n: "1",
+      text: "Training mode"
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 22
+      }
+    }, Object.keys(MODES).map(mid => {
+      const m = MODES[mid];
+      const on = mode === mid;
+      return /*#__PURE__*/React.createElement("button", {
+        key: mid,
+        onClick: () => chooseMode(mid),
+        className: "w-full rounded-2xl text-left",
+        style: {
+          background: on ? C.panel2 : C.panel,
+          border: `1px solid ${on ? C.accent : C.line}`,
+          padding: 15,
+          marginBottom: 10
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "flex items-center justify-between"
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontFamily: display,
+          fontSize: 20,
+          color: on ? C.accent : C.text,
+          textTransform: "uppercase"
+        }
+      }, m.label), on && /*#__PURE__*/React.createElement(Check, {
+        size: 18,
+        style: {
+          color: C.accent
+        }
+      })), /*#__PURE__*/React.createElement("p", {
+        style: {
+          color: C.mut,
+          fontSize: 13,
+          lineHeight: 1.5,
+          marginTop: 5
+        }
+      }, m.blurb));
+    }), /*#__PURE__*/React.createElement("p", {
+      style: {
+        color: C.mut,
+        fontSize: 12,
+        lineHeight: 1.5
+      }
+    }, "Switching modes rebuilds your weekly schedule for that mode. Your history, streaks, and logged weights are kept.")), /*#__PURE__*/React.createElement(SectionLabel, {
+      n: "2",
       text: "Choose your level"
     }), /*#__PURE__*/React.createElement("div", {
       className: "flex flex-col gap-2.5"
@@ -4278,8 +5279,75 @@ function App() {
         marginTop: 5,
         lineHeight: 1.5
       }
-    }, l.blurb)))), /*#__PURE__*/React.createElement(SectionLabel, {
-      n: "2",
+    }, l.blurb)))), mode === "gym" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(SectionLabel, {
+      n: "3",
+      text: "Off-season block"
+    }), /*#__PURE__*/React.createElement("p", {
+      style: {
+        color: C.mut,
+        fontSize: 12.5,
+        lineHeight: 1.55,
+        marginTop: -6,
+        marginBottom: 10
+      }
+    }, "Set the date your off-season starts and the program runs a 15-week periodized block: five weeks building size, five converting it to maximal strength, then five turning that strength into speed and power for the season."), /*#__PURE__*/React.createElement("button", {
+      onClick: toggleSprintBoost,
+      className: "w-full rounded-2xl text-left",
+      style: {
+        background: sprintBoost ? C.panel2 : C.panel,
+        border: `1px solid ${sprintBoost ? C.coral : C.line}`,
+        padding: 14,
+        marginBottom: 14
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "flex items-center justify-between"
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: sprintBoost ? C.coral : C.text,
+        fontSize: 14.5,
+        fontWeight: 700
+      }
+    }, "Midweek speed block"), /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: sprintBoost ? C.coral : C.mut,
+        fontSize: 12,
+        fontWeight: 700
+      }
+    }, sprintBoost ? "ON" : "OFF")), /*#__PURE__*/React.createElement("p", {
+      style: {
+        color: C.mut,
+        fontSize: 12.5,
+        lineHeight: 1.5,
+        marginTop: 5
+      }
+    }, "Adds two sprint drills to your Pull day, done straight after the warm-up and before lifting. Gives you a second speed exposure each week so top-end speed doesn't fade during a long strength block. One accessory is dropped to protect the time budget.")), /*#__PURE__*/React.createElement("input", {
+      type: "date",
+      value: blockStart,
+      onChange: e => saveBlockStart(e.target.value),
+      style: {
+        width: "100%",
+        background: C.panel,
+        color: C.text,
+        border: `1px solid ${C.line}`,
+        borderRadius: 10,
+        padding: "11px",
+        fontSize: 14,
+        marginBottom: 8
+      }
+    }), blockStart && offseasonWeek(blockStart) ? /*#__PURE__*/React.createElement("p", {
+      style: {
+        color: C.accent,
+        fontSize: 12.5,
+        marginBottom: 20
+      }
+    }, "Week ", offseasonWeek(blockStart), " of 15 · ", phaseForWeek(offseasonWeek(blockStart)).label) : /*#__PURE__*/React.createElement("p", {
+      style: {
+        color: C.mut,
+        fontSize: 12,
+        marginBottom: 20
+      }
+    }, "No date set — main lifts default to a straight heavy scheme.")), /*#__PURE__*/React.createElement(SectionLabel, {
+      n: "4",
       text: "Your weekly plan"
     }), /*#__PURE__*/React.createElement("div", {
       className: "rounded-2xl",
@@ -4289,7 +5357,7 @@ function App() {
         overflow: "hidden"
       }
     }, WEEKDAYS.map((dn, i) => {
-      const d = planFor(i, schedule);
+      const d = planFor(i, schedule, mode);
       const isToday = i === new Date().getDay();
       return /*#__PURE__*/React.createElement("div", {
         key: i,
@@ -4343,12 +5411,12 @@ function App() {
         lineHeight: 1.55,
         marginTop: 10
       }
-    }, "Seven fixed day-types — push, lower, pull, full-body, two agility-ladder days, and a rest day. Rearrange them any time from the ", /*#__PURE__*/React.createElement("b", {
+    }, "Seven fixed day-types for this mode. Rearrange them any time from the ", /*#__PURE__*/React.createElement("b", {
       style: {
         color: C.text
       }
     }, "Schedule"), " screen (calendar icon on Today)."), /*#__PURE__*/React.createElement(SectionLabel, {
-      n: "3",
+      n: "5",
       text: "Injuries & limitations"
     }), /*#__PURE__*/React.createElement("p", {
       style: {
@@ -4402,7 +5470,7 @@ function App() {
         lineHeight: 1.55
       }
     }, "These are general, comfort-based swaps — ", /*#__PURE__*/React.createElement("b", null, "not medical or rehab advice."), " Follow your surgeon's or physical therapist's guidance, especially for your knee. Stop and rest if you feel pain, swelling, sharp twinges, or instability.")), /*#__PURE__*/React.createElement(SectionLabel, {
-      n: "4",
+      n: "6",
       text: "Backup & restore"
     }), /*#__PURE__*/React.createElement("p", {
       style: {
@@ -4587,11 +5655,11 @@ function App() {
   }), dayPlan.activities.filter(a => ACT[a].view).map(a => {
     const m = ACT[a];
     const lbl = {
-      calisthenics: "Calisthenics",
-      qigong: "Qi Gong",
-      stretch: "Stretch",
+      calisthenics: "Strength",
+      qigong: "Warm-Up",
+      stretch: "Cool-Down",
       yoga: "Yoga",
-      sprints: "Sprints"
+      sprints: "Power"
     }[a] || m.label;
     return /*#__PURE__*/React.createElement(Tab, {
       key: a,
@@ -4617,7 +5685,8 @@ function App() {
     schedule: schedule,
     onAssign: assignDay,
     onReset: resetSchedule,
-    onOpen: v => setView(v)
+    onOpen: v => setView(v),
+    mode: mode
   }), view === "workout" && /*#__PURE__*/React.createElement(WorkoutView, {
     plan: plan,
     level: level,
@@ -4629,6 +5698,15 @@ function App() {
     streak: computeStreak(history),
     tight: tight,
     onPickTight: pickTight,
+    loads: loads,
+    onSaveLoad: saveLoad,
+    mode: mode,
+    warmCount: qigongToday.length,
+    flowCount: flowItems.length,
+    phase: phase,
+    osWeek: osWeek,
+    speedDay: mode === "gym" && sprintBoost && dayPlan.caliFocus === SPEED_DAY_FOCUS,
+    weekNumProp: weekNum,
     injuries: injuries,
     onToggleInjury: toggleInjury,
     equipment: equipment,
@@ -4644,13 +5722,13 @@ function App() {
   }), view === "qigong" && /*#__PURE__*/React.createElement(FlowSession, {
     items: qigongToday,
     color: C.jade,
-    title: "Qi Gong Flow",
-    subtitle: "20 min · mobility · tuned to yesterday",
+    title: "Warm-Up",
+    subtitle: "~10 min · RAMP · primes the session",
     Icon: Leaf,
-    intro: "Twenty gentle exercises, one minute each. The flow keeps a stable core and rotates a few moves toward whatever you worked or felt tight yesterday. Move slowly and breathe.",
-    startLabel: "Start 20-min flow",
-    doneLabel: "Mark Practice Done",
-    completeMsg: "Nicely done. Carry the calm with you.",
+    intro: "An evidence-based RAMP warm-up: Raise your temperature, Activate the key muscles, Mobilize dynamically, then Potentiate with brief explosive work. It finishes sharp, not relaxed — so you go into training primed.",
+    startLabel: "Start warm-up",
+    doneLabel: "Mark Warm-Up Done",
+    completeMsg: "Primed and ready — go train.",
     done: qiDone,
     onFinish: finishQi,
     onUndo: undoQi,
@@ -4692,8 +5770,8 @@ function App() {
     onNext: nextInfo("yoga").go,
     nextLabel: nextInfo("yoga").label,
     topSlot: surveyNote
-  }), view === "sprints" && /*#__PURE__*/React.createElement(LadderView, {
-    items: SPRINTS,
+  }), view === "sprints" && /*#__PURE__*/React.createElement(PowerView, {
+    items: dailyPower(dayNum, dayPlan.powerVariant),
     done: sprintDone,
     onFinish: finishSprint,
     onUndo: undoSprint,
@@ -4723,7 +5801,9 @@ function App() {
     sprintHistory: sprintHistory,
     walkHistory: walkHistory,
     foamHistory: foamHistory,
-    schedule: schedule
+    schedule: schedule,
+    volume: volume,
+    mode: mode
   })));
 }
 
@@ -4733,7 +5813,8 @@ function ScheduleView({
   schedule,
   onAssign,
   onReset,
-  onOpen
+  onOpen,
+  mode
 }) {
   const [edit, setEdit] = React.useState(null);
   const today = new Date().getDay();
@@ -4742,11 +5823,18 @@ function ScheduleView({
     pushCore: "Push",
     lower: "Lower",
     pull: "Pull",
-    full: "Full"
+    full: "Full",
+    ePush: "Push",
+    ePull: "Pull",
+    eLegs: "Legs",
+    eUpper: "Upper",
+    eLower: "Lower"
   };
+  const TPL = templatesFor(mode);
+  const ORD = orderFor(mode);
   const OPENABLE = [{
     view: "qigong",
-    label: "Qi Gong",
+    label: "Warm-Up (RAMP)",
     icon: Leaf,
     color: C.jade
   }, {
@@ -4756,7 +5844,7 @@ function ScheduleView({
     color: C.accent
   }, {
     view: "sprints",
-    label: "Agility Ladder",
+    label: "Power & Speed",
     icon: Zap,
     color: C.coral
   }, {
@@ -4796,7 +5884,7 @@ function ScheduleView({
       marginBottom: 16
     }
   }, "Tap a day to swap in a different day-type. The week always keeps the same seven types — one of each — so you're only rearranging them, never adding or losing any."), WEEKDAYS.map((dn, i) => {
-    const d = planFor(i, schedule);
+    const d = planFor(i, schedule, mode);
     const isToday = i === today;
     const editing = edit === i;
     return /*#__PURE__*/React.createElement("div", {
@@ -4890,8 +5978,8 @@ function ScheduleView({
       style: {
         flexWrap: "wrap"
       }
-    }, TEMPLATE_ORDER.map(tid => {
-      const t = TEMPLATES[tid];
+    }, ORD.map(tid => {
+      const t = TPL[tid];
       const active = schedule[i] === tid;
       return /*#__PURE__*/React.createElement("button", {
         key: tid,
@@ -5000,7 +6088,7 @@ function CheckinCard({
       }
     }, /*#__PURE__*/React.createElement(Check, {
       size: 16
-    }), " Check-in saved — tomorrow's qi gong is tuned"), /*#__PURE__*/React.createElement("button", {
+    }), " Check-in saved — tomorrow's session is tuned"), /*#__PURE__*/React.createElement("button", {
       onClick: () => setOpen(true),
       style: {
         color: C.mut,
@@ -5029,7 +6117,7 @@ function CheckinCard({
       lineHeight: 1.5,
       marginBottom: 12
     }
-  }, "Takes 10 seconds and tunes tomorrow's qi gong mobility."), /*#__PURE__*/React.createElement("div", {
+  }, "Takes 10 seconds. It tunes tomorrow's warm-up, eases any sore areas in your strength work, and targets your cool-down."), /*#__PURE__*/React.createElement("div", {
     style: {
       color: C.mut,
       fontSize: 11.5,
@@ -5219,11 +6307,11 @@ function DashboardView({
       fontSize: 13,
       lineHeight: 1.5
     }
-  }, /*#__PURE__*/React.createElement("b", null, "Big day (~2 hours)."), " Qi gong, calisthenics and stretch, then yoga and foam rolling to finish. Pace yourself and take a breather between blocks.")), acts.map(a => {
+  }, /*#__PURE__*/React.createElement("b", null, "Longer session today."), " Warm-up, the full strength block, then the cool-down flow. Pace yourself and take a breather between blocks.")), acts.map(a => {
     const m = ACT[a];
     const Icon = m.icon;
     const isDone = statuses[a];
-    const focusNote = a === "calisthenics" && dayPlan.caliFocus ? DAYS[dayPlan.caliFocus].focus : m.note;
+    const focusNote = a === "calisthenics" && dayPlan.caliFocus ? FOCUS_NOTE[dayPlan.caliFocus] || DAYS[dayPlan.caliFocus] && DAYS[dayPlan.caliFocus].focus || m.note : m.note;
     const clickable = !!m.view;
     return /*#__PURE__*/React.createElement("button", {
       key: a,
@@ -5313,6 +6401,109 @@ function DashboardView({
 /* ---------- CALISTHENICS WORKOUT ---------- */
 // Parse a time-based prescription (e.g. "20–30s", "30s / side", "3 × 30s") into a
 // seconds range. Returns null for rep-based prescriptions ("10 / side", "8–12").
+// Evidence-based rest guidance, shown as a recommendation (no countdown).
+// Heavy/low-rep work benefits from 3-5 min; moderate 2-3 min; accessory/high-rep 1-2 min.
+// Hypertrophy is impaired below ~1 min, with little added benefit past ~2 min.
+// Low-fatigue accessory/prehab slots — these are supersetted into the rest periods of
+// the main lifts, which is how a session fits real prehab volume without adding time.
+const PAIR_SLOTS = ["rotator", "trunkrot", "adductor", "hipflex", "plank", "deadbug", "core", "oblique", "birddog", "calf", "lateral"];
+// Compound lifts that carry the off-season strength emphasis (heavy, low reps).
+const COMPOUND_SLOTS = ["push", "pushvar", "back", "squat", "lunge", "hinge", "stepup", "pike", "glute", "hamcurl", "curl", "tri"];
+const HEAVY_REPS = {
+  beginner: "6–8",
+  intermediate: "5–6",
+  advanced: "4–6"
+};
+
+// 15-week off-season block periodization. Sequenced so each phase potentiates the next:
+// accumulate size -> convert it to maximal force -> convert force into speed/power for
+// the season. Meta-analysis finds periodized training beats non-periodized for maximal
+// strength, and phase potentiation is the standard model for a strength-power athlete.
+const PHASES = [{
+  id: "hypertrophy",
+  weeks: [1, 5],
+  label: "Hypertrophy",
+  short: "Build",
+  reps: {
+    beginner: "10–12",
+    intermediate: "8–12",
+    advanced: "8–10"
+  },
+  sets: 4,
+  rest: "90–120s",
+  note: "Weeks 1–5 — accumulation. Moderate loads, higher reps, shorter rest. Build the muscle you'll later turn into strength. Chase a hard but controlled 1–2 reps in reserve."
+}, {
+  id: "strength",
+  weeks: [6, 10],
+  label: "Max Strength",
+  short: "Strength",
+  reps: {
+    beginner: "5–6",
+    intermediate: "4–6",
+    advanced: "3–5"
+  },
+  sets: 5,
+  rest: "3–5 min",
+  note: "Weeks 6–10 — intensification. Heavier loads, fewer reps, long rest. This is where the size you built becomes force. Leave 1–2 reps in reserve and never grind out ugly reps."
+}, {
+  id: "power",
+  weeks: [11, 15],
+  label: "Power & Realization",
+  short: "Power",
+  reps: {
+    beginner: "4–6",
+    intermediate: "3–5",
+    advanced: "3–5"
+  },
+  sets: 4,
+  rest: "3 min",
+  note: "Weeks 11–15 — realization. Moderate loads moved as fast as you can, plus more jumping and sprinting. Maximal strength gains show up as speed here — this is your peak into the season."
+}];
+function phaseForWeek(w) {
+  return PHASES.find(p => w >= p.weeks[0] && w <= p.weeks[1]) || PHASES[0];
+}
+function offseasonWeek(startISO) {
+  if (!startISO) return null;
+  const start = new Date(startISO + "T00:00:00");
+  if (isNaN(start)) return null;
+  const days = Math.floor((new Date() - start) / 86400000);
+  if (days < 0) return null;
+  return Math.min(15, Math.floor(days / 7) + 1);
+}
+
+// Rough session length in minutes, so you can see whether a day fits your window.
+function estimateMinutes(exercises, warmCount, flowCount) {
+  const BRK = 10;
+  let mins = (warmCount * 52 + BRK) / 60 + flowCount * 50 / 60;
+  exercises.forEach(e => {
+    const sets = e.sets || 3;
+    if (e.paired) {
+      mins += sets * 15 / 60;
+      return;
+    }
+    const nums = (String(e.reps).match(/\d+/g) || []).map(Number);
+    const low = nums.length ? Math.min(...nums) : 10;
+    const rest = /s\b/.test(String(e.reps)) ? 75 : low <= 6 ? 210 : low <= 12 ? 150 : 90;
+    mins += sets * (45 + rest) / 60;
+  });
+  return Math.round(mins);
+}
+function restFor(reps) {
+  const r = String(reps || "");
+  const nums = (r.match(/\d+/g) || []).map(Number);
+  if (/s\b/.test(r)) return "60–90s rest";
+  const low = nums.length ? Math.min(...nums) : 10;
+  if (low <= 6) return "3–5 min rest";
+  if (low <= 12) return "2–3 min rest";
+  return "1–2 min rest";
+}
+function effortFor(reps) {
+  const r = String(reps || "");
+  const nums = (r.match(/\d+/g) || []).map(Number);
+  const low = nums.length ? Math.min(...nums) : 10;
+  if (/s\b/.test(r)) return "Hold to ~2 in reserve";
+  return low <= 6 ? "Leave 2–3 reps in reserve" : "Leave 1–2 reps in reserve";
+}
 function secRange(reps) {
   if (!reps) return null;
   const m = String(reps).match(/(\d+)\s*(?:[–-]\s*(\d+))?\s*s\b/);
@@ -5469,6 +6660,71 @@ function HoldTimer({
     size: 16
   }), " All ", total, " sets timed"));
 }
+function LoadRow({
+  name,
+  sets,
+  last,
+  onSave,
+  color
+}) {
+  const [w, setW] = React.useState(last ? String(last.weight) : "");
+  const [saved, setSaved] = React.useState(false);
+  const suggestion = last ? last.weight > 0 ? `Last: ${last.weight} ${last.unit || "lb"}${last.date ? ` · ${last.date.slice(5)}` : ""} — aim to beat it` : "Last: bodyweight — add reps or load" : "First time — log your working weight";
+  return /*#__PURE__*/React.createElement("div", {
+    className: "rounded-lg",
+    style: {
+      background: C.bg,
+      border: `1px solid ${C.line}`,
+      padding: 10,
+      marginTop: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: C.mut,
+      fontSize: 11.5,
+      marginBottom: 7
+    }
+  }, suggestion), /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-2"
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "number",
+    inputMode: "decimal",
+    value: w,
+    onChange: e => {
+      setW(e.target.value);
+      setSaved(false);
+    },
+    placeholder: "weight",
+    style: {
+      flex: 1,
+      background: C.panel,
+      color: C.text,
+      border: `1px solid ${C.line}`,
+      borderRadius: 8,
+      padding: "8px 10px",
+      fontSize: 14
+    }
+  }), /*#__PURE__*/React.createElement("button", {
+    onClick: () => {
+      onSave(name, {
+        weight: Number(w) || 0,
+        unit: "lb",
+        sets,
+        date: todayKey()
+      });
+      setSaved(true);
+    },
+    className: "rounded-lg",
+    style: {
+      background: saved ? C.panel2 : color,
+      color: saved ? color : "#12120c",
+      border: `1px solid ${color}`,
+      padding: "8px 14px",
+      fontSize: 13,
+      fontWeight: 700
+    }
+  }, saved ? "Saved" : "Log")));
+}
 function WorkoutView({
   plan,
   level,
@@ -5489,7 +6745,16 @@ function WorkoutView({
   qiDone,
   soreRegions,
   soreLabels,
-  setAdjust
+  setAdjust,
+  loads,
+  onSaveLoad,
+  mode,
+  warmCount,
+  flowCount,
+  phase,
+  osWeek,
+  speedDay,
+  weekNumProp
 }) {
   const [showInj, setShowInj] = React.useState(false);
   const [howKey, setHowKey] = React.useState(null);
@@ -5497,17 +6762,72 @@ function WorkoutView({
   const isRest = plan.type === "rest";
   const Icon = isWork ? Dumbbell : isRest ? Moon : Wind;
   const regions = [...new Set([...activeRegions(injuries), ...(soreRegions || [])])];
-  const adj = n => typeof n === "number" && setAdjust ? Math.max(2, Math.min(6, n + setAdjust)) : n;
+  const adj = n => {
+    if (typeof n !== "number") return n;
+    let v = n + (setAdjust || 0);
+    if (mode === "gym") v = Math.max(4, v);
+    return Math.max(2, Math.min(6, v));
+  };
   let exercises = isWork ? plan.slots.map((s, i) => {
     const ex = selectExercise(s, level, regions, equipment);
     return {
       key: s + i,
+      slot: s,
       pat: SLOT_PAT[s],
       ...ex,
       sets: adj(ex.sets)
     };
   }) : [];
-  // Continuous-session logic: if qi gong is already done today, it warmed up (and
+  if (isWork && speedDay) {
+    // Speed first, then lift. Drop one accessory to protect the time budget.
+    const pairedIdx = [];
+    exercises.forEach((e, i) => {
+      if (PAIR_SLOTS.includes(e.slot)) pairedIdx.push(i);
+    });
+    if (pairedIdx.length) exercises = exercises.filter((_, i) => i !== pairedIdx[pairedIdx.length - 1]);
+    const sb = speedBlock(weekNumProp || 0).map((d, i) => ({
+      key: "speed" + i,
+      slot: "sprint",
+      name: d.name,
+      reps: d.reps,
+      sets: null,
+      cue: d.cue,
+      steps: d.steps,
+      tip: d.tip,
+      target: "Speed · sprint mechanics",
+      speed: true
+    }));
+    exercises = [...sb, ...exercises];
+  }
+  if (isWork && mode === "gym") {
+    // Off-season build: the first two compounds get a heavy strength emphasis, and the
+    // low-fatigue prehab work is supersetted into their rest so the session still fits.
+    let heavied = 0;
+    exercises = exercises.map(e => {
+      if (heavied < 2 && COMPOUND_SLOTS.includes(e.slot) && !secRange(e.reps)) {
+        heavied++;
+        if (phase) return {
+          ...e,
+          sets: phase.sets,
+          reps: phase.reps[level] || phase.reps.intermediate,
+          heavy: true,
+          phaseTag: phase.short
+        };
+        return {
+          ...e,
+          sets: Math.max(5, e.sets || 4),
+          reps: HEAVY_REPS[level] || HEAVY_REPS.intermediate,
+          heavy: true
+        };
+      }
+      return e;
+    });
+    exercises = exercises.map((e, i) => i > 0 && PAIR_SLOTS.includes(e.slot) ? {
+      ...e,
+      paired: true
+    } : e);
+  }
+  // Continuous-session logic: if the warm-up is already done today, it primed (and
   // primed) the push and squat patterns this day may open with. Lead with a fresh
   // pattern so you're not repeating what you just did. Nothing is dropped.
   let reordered = false;
@@ -5519,6 +6839,7 @@ function WorkoutView({
       reordered = true;
     }
   }
+  const sessionMins = isWork ? estimateMinutes(exercises, warmCount || 12, flowCount || 16) : 0;
   const allChecked = isWork && exercises.every(e => checks[e.key]);
   const labels = activeLabels(injuries);
   const EQUIP_OPTS = [{
@@ -5716,7 +7037,7 @@ function WorkoutView({
     style: {
       color: C.text
     }
-  }, "Warmed up from qi gong."), " A quick shake-out is plenty.", reordered ? " This order leads with a fresh movement so you're not repeating what qi gong just primed." : "", " Rest ~60s between sets.") : /*#__PURE__*/React.createElement("p", {
+  }, "Already warmed up."), " Your RAMP warm-up has you primed — a quick shake-out is plenty.", reordered ? " This order leads with a fresh movement so you're not repeating what the warm-up just primed." : "", " Rest as prescribed between sets.") : /*#__PURE__*/React.createElement("p", {
     style: {
       color: C.mut,
       fontSize: 13.5,
@@ -5726,7 +7047,58 @@ function WorkoutView({
     style: {
       color: C.text
     }
-  }, "Warm up first."), " 3–5 min: march in place, arm circles, a few slow squats. Rest ~60s between sets. All you need is floor space and a wall.")), isWork && setAdjust !== 0 && /*#__PURE__*/React.createElement("div", {
+  }, "Warm up first."), " 3–5 min: march in place, arm circles, a few slow squats. Rest ~60s between sets. All you need is floor space and a wall.")), isWork && phase && /*#__PURE__*/React.createElement("div", {
+    className: "rounded-xl p-3.5",
+    style: {
+      background: C.panel2,
+      border: `1px solid ${C.accent}`,
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center justify-between",
+    style: {
+      marginBottom: 5
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: display,
+      fontSize: 17,
+      color: C.accent,
+      textTransform: "uppercase"
+    }
+  }, phase.label), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: C.mut,
+      fontSize: 12,
+      fontWeight: 700
+    }
+  }, "Off-season week ", osWeek, " / 15")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: 5,
+      background: C.bg,
+      borderRadius: 3,
+      overflow: "hidden",
+      marginBottom: 7
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: Math.round(osWeek / 15 * 100) + "%",
+      height: "100%",
+      background: C.accent
+    }
+  })), /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: C.text,
+      fontSize: 12.5,
+      lineHeight: 1.5
+    }
+  }, phase.note), /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: C.mut,
+      fontSize: 11.5,
+      marginTop: 5
+    }
+  }, "Main lifts this phase: ", phase.sets, " sets · ", phase.reps[level] || phase.reps.intermediate, " reps · ", phase.rest, " rest")), isWork && setAdjust !== 0 && /*#__PURE__*/React.createElement("div", {
     className: "rounded-xl p-3.5 flex items-start gap-2.5",
     style: {
       background: C.panel2,
@@ -5858,6 +7230,26 @@ function WorkoutView({
     }, e.sets ? `${e.sets} × ${e.reps}` : e.reps), /*#__PURE__*/React.createElement("span", {
       style: {
         color: C.mut,
+        fontSize: 11.5,
+        marginLeft: 7
+      }
+    }, e.paired ? "superset — do during your rest" : `${restFor(e.reps)} · ${effortFor(e.reps)}`), e.heavy && /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: C.amber,
+        fontSize: 11,
+        marginLeft: 7,
+        fontWeight: 700
+      }
+    }, e.phaseTag ? e.phaseTag.toUpperCase() : "HEAVY"), e.speed && /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: C.coral,
+        fontSize: 11,
+        marginLeft: 7,
+        fontWeight: 700
+      }
+    }, "SPEED · DO FIRST"), /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: C.mut,
         fontSize: 12
       }
     }, e.target), e.modified && /*#__PURE__*/React.createElement("span", {
@@ -5895,7 +7287,11 @@ function WorkoutView({
       onClick: () => setHowKey(howOpen ? null : e.key)
     }), howOpen && /*#__PURE__*/React.createElement(HowToPanel, {
       name: e.name,
-      cue: e.cue
+      cue: e.cue,
+      data: e.steps ? {
+        steps: e.steps,
+        watch: e.tip
+      } : undefined
     }), secRange(e.reps) && /*#__PURE__*/React.createElement(HoldTimer, {
       range: secRange(e.reps),
       sets: e.sets || 3,
@@ -5904,6 +7300,12 @@ function WorkoutView({
         ...c,
         [e.key]: true
       }))
+    }), mode === "gym" && e.loaded && onSaveLoad && !secRange(e.reps) && /*#__PURE__*/React.createElement(LoadRow, {
+      name: e.name,
+      sets: e.sets || 3,
+      last: loads && loads[e.name],
+      onSave: onSaveLoad,
+      color: C.accent
     }))));
   }), !isWork && /*#__PURE__*/React.createElement("div", {
     className: "rounded-2xl p-5",
@@ -5940,7 +7342,16 @@ function WorkoutView({
       marginTop: 20
     }
   }, !done ? /*#__PURE__*/React.createElement("button", {
-    onClick: onFinish,
+    onClick: () => {
+      const v = {};
+      exercises.forEach(e => {
+        const m = MUSCLE_MAP[e.slot] || {};
+        Object.keys(m).forEach(k => {
+          v[k] = (v[k] || 0) + m[k] * (e.sets || 3);
+        });
+      });
+      onFinish(v);
+    },
     className: "w-full rounded-2xl flex items-center justify-center gap-2 transition-all",
     style: {
       background: C.accent,
@@ -6028,15 +7439,6 @@ function WorkoutView({
 }
 
 /* ---------- STRETCH ---------- */
-function parseHold(hold) {
-  const m = hold.match(/(\d+)\s*s/);
-  const sec = m ? parseInt(m[1], 10) : 30;
-  const sides = /side/i.test(hold) ? 2 : 1;
-  return {
-    sec,
-    sides
-  };
-}
 const fmt = s => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
 function StretchView({
   items,
@@ -6133,7 +7535,7 @@ function StretchView({
 function durLabel(sec) {
   return sec % 60 === 0 ? `${sec / 60} min` : sec >= 60 ? `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}` : `${sec}s`;
 }
-function LadderView({
+function PowerView({
   items,
   done,
   onFinish,
@@ -6149,105 +7551,33 @@ function LadderView({
   const [checks, setChecks] = React.useState({});
   const [howKey, setHowKey] = React.useState(null);
   const dark = "#12120c";
-  const warm = items.find(i => i.type === "warm");
-  const cool = items.find(i => i.type === "cool");
-  const drills = items.filter(i => i.type === "drill");
-  const allChecked = drills.every((_, i) => checks[i]);
+  const allChecked = items.every((_, i) => checks[i]);
   const toggle = i => setChecks(c => ({
     ...c,
     [i]: !c[i]
   }));
-  const guideCard = (it, label) => /*#__PURE__*/React.createElement("div", {
-    className: "rounded-2xl",
-    style: {
-      background: C.panel,
-      border: `1px solid ${C.line}`,
-      padding: 15,
-      marginBottom: 12
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      color: C.coral,
-      fontSize: 11,
-      fontWeight: 700,
-      letterSpacing: ".06em",
-      textTransform: "uppercase",
-      marginBottom: 5
-    }
-  }, label), /*#__PURE__*/React.createElement("div", {
-    style: {
-      color: C.text,
-      fontWeight: 700,
-      fontSize: 16
-    }
-  }, it.name), /*#__PURE__*/React.createElement("p", {
-    style: {
-      color: C.mut,
-      fontSize: 13,
-      lineHeight: 1.5,
-      marginTop: 4
-    }
-  }, it.cue));
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    className: "flex items-center gap-2",
-    style: {
-      marginBottom: 6,
-      flexWrap: "wrap"
-    }
-  }, streak > 0 && /*#__PURE__*/React.createElement("span", {
-    className: "flex items-center gap-1 px-2.5 py-1 rounded-full",
-    style: {
-      background: C.panel2,
-      color: C.coral,
-      fontSize: 12,
-      fontWeight: 600
-    }
-  }, /*#__PURE__*/React.createElement(Flame, {
-    size: 13
-  }), " ", streak, " day", streak > 1 ? "s" : ""), /*#__PURE__*/React.createElement("span", {
-    style: {
-      color: C.mut,
-      fontSize: 13
-    }
-  }, "Agility footwork · self-paced by passes")), /*#__PURE__*/React.createElement("div", {
-    className: "flex items-center gap-3",
-    style: {
-      marginBottom: 16
-    }
-  }, /*#__PURE__*/React.createElement(Zap, {
-    size: 26,
-    style: {
-      color: C.coral
-    }
-  }), /*#__PURE__*/React.createElement("h2", {
-    style: {
-      fontFamily: display,
-      fontSize: 34,
-      color: C.text,
-      lineHeight: .95,
-      textTransform: "uppercase"
-    }
-  }, "Sprint Ladder")), surveyNote, /*#__PURE__*/React.createElement("div", {
-    className: "rounded-xl p-3.5 flex items-start gap-2.5",
-    style: {
-      background: "rgba(195,163,149,0.1)",
-      border: `1px solid rgba(195,163,149,0.32)`,
-      marginBottom: 16
-    }
-  }, /*#__PURE__*/React.createElement(ShieldAlert, {
-    size: 18,
-    style: {
-      color: C.coral,
-      flexShrink: 0,
-      marginTop: 1
-    }
-  }), /*#__PURE__*/React.createElement("p", {
-    style: {
-      color: C.text,
-      fontSize: 12.5,
-      lineHeight: 1.55
-    }
-  }, kneeReported ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("b", null, "You flagged your knee in your last check-in."), " Go easy — cut the passes on the hops (Hopscotch, Slalom, Lateral High Knees), keep landings soft, and stop if it flares.") : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("b", null, "Do each drill for the listed passes down the ladder"), ", resetting at the start between passes. Warm up fully and keep every landing soft and controlled."))), warm && guideCard(warm, "Warm-up"), drills.map((d, i) => {
+  const BLOCKS = [{
+    id: "L",
+    label: "Ladder Primer",
+    note: "Low-intensity footwork to sharpen coordination before the hard work. Set up your ladder and do all of these before moving on."
+  }, {
+    id: "S",
+    label: "Sprints & Acceleration",
+    note: "Done first while you're freshest — top speed is the quality most ruined by fatigue. Walk back for full recovery."
+  }, {
+    id: "P",
+    label: "Jumps & Plyometrics",
+    note: "Max effort with a full reset between sets. Land soft, quiet, and controlled."
+  }, {
+    id: "C",
+    label: "Change of Direction",
+    note: "Braking and cutting — the biggest driver of agility. Stay low, sink the hips, and plant hard."
+  }, {
+    id: "F",
+    label: "Explosive Finisher",
+    note: "A short power finisher to close it out."
+  }];
+  const card = (d, i) => {
     const open = howKey === i;
     return /*#__PURE__*/React.createElement("div", {
       key: i,
@@ -6285,21 +7615,23 @@ function LadderView({
         fontWeight: 700,
         fontSize: 16
       }
-    }, d.name), /*#__PURE__*/React.createElement("div", {
+    }, d.name)), /*#__PURE__*/React.createElement("div", {
       style: {
-        color: C.mut,
-        fontSize: 12.5,
-        marginTop: 1
-      }
-    }, d.focus)), /*#__PURE__*/React.createElement("span", {
-      style: {
-        color: C.coral,
-        fontSize: 13.5,
-        fontWeight: 700,
         textAlign: "right",
         flexShrink: 0
       }
-    }, d.reps)), /*#__PURE__*/React.createElement("p", {
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: C.coral,
+        fontSize: 13.5,
+        fontWeight: 700
+      }
+    }, d.reps), d.contacts ? /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: C.mut,
+        fontSize: 11
+      }
+    }, d.contacts, " contacts") : null)), /*#__PURE__*/React.createElement("p", {
       style: {
         color: C.mut,
         fontSize: 13,
@@ -6319,14 +7651,173 @@ function LadderView({
         tip: d.tip
       }
     }));
-  }), cool && guideCard(cool, "Cool-down"), /*#__PURE__*/React.createElement("div", {
+  };
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-2",
+    style: {
+      marginBottom: 6,
+      flexWrap: "wrap"
+    }
+  }, streak > 0 && /*#__PURE__*/React.createElement("span", {
+    className: "flex items-center gap-1 px-2.5 py-1 rounded-full",
+    style: {
+      background: C.panel2,
+      color: C.coral,
+      fontSize: 12,
+      fontWeight: 600
+    }
+  }, /*#__PURE__*/React.createElement(Flame, {
+    size: 13
+  }), " ", streak, " day", streak > 1 ? "s" : ""), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: C.mut,
+      fontSize: 13
+    }
+  }, "Outdoors · explosiveness · sprint · jump")), /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-3",
+    style: {
+      marginBottom: 16
+    }
+  }, /*#__PURE__*/React.createElement(Zap, {
+    size: 26,
+    style: {
+      color: C.coral
+    }
+  }), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      fontFamily: display,
+      fontSize: 34,
+      color: C.text,
+      lineHeight: .95,
+      textTransform: "uppercase"
+    }
+  }, "Power & Speed")), surveyNote, /*#__PURE__*/React.createElement("div", {
+    className: "rounded-xl p-3.5 flex items-start gap-2.5",
+    style: {
+      background: "rgba(195,163,149,0.1)",
+      border: `1px solid rgba(195,163,149,0.32)`,
+      marginBottom: 16
+    }
+  }, /*#__PURE__*/React.createElement(ShieldAlert, {
+    size: 18,
+    style: {
+      color: C.coral,
+      flexShrink: 0,
+      marginTop: 1
+    }
+  }), /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: C.text,
+      fontSize: 12.5,
+      lineHeight: 1.55
+    }
+  }, kneeReported ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("b", null, "You flagged your knee in your last check-in."), " Scale back the jumps and single-leg work today, keep every landing soft and controlled, and stop on any knee pain.") : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("b", null, "Head outside for this one"), " — a yard, park, or open path, with your agility ladder and a bench or set of stairs nearby. Explosive work is high-intent: maximum effort per rep, full recovery between. Land soft and build the jump volume up gradually."))), (() => {
+    const total = items.reduce((n, x) => n + (x.contacts || 0), 0);
+    if (!total) return null;
+    const inBand = total >= CONTACT_MIN && total <= CONTACT_MAX;
+    const col = total > CONTACT_MAX ? C.amber : inBand ? C.accent : C.mut;
+    const pct = Math.min(100, total / CONTACT_MAX * 100);
+    return /*#__PURE__*/React.createElement("div", {
+      className: "rounded-xl",
+      style: {
+        background: C.panel,
+        border: `1px solid ${C.line}`,
+        padding: 13,
+        marginBottom: 16
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "flex items-center justify-between",
+      style: {
+        marginBottom: 6
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: C.text,
+        fontSize: 13,
+        fontWeight: 700
+      }
+    }, "Impact load · foot contacts"), /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: col,
+        fontSize: 13,
+        fontWeight: 700
+      }
+    }, total, " ", /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: C.mut,
+        fontWeight: 400
+      }
+    }, "/ ", CONTACT_MIN, "–", CONTACT_MAX))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        height: 6,
+        background: C.bg,
+        borderRadius: 3,
+        overflow: "hidden",
+        position: "relative",
+        marginBottom: 7
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: pct + "%",
+        height: "100%",
+        background: col,
+        borderRadius: 3
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: "absolute",
+        left: CONTACT_MIN / CONTACT_MAX * 100 + "%",
+        top: 0,
+        bottom: 0,
+        width: 1,
+        background: C.line
+      }
+    })), /*#__PURE__*/React.createElement("p", {
+      style: {
+        color: C.mut,
+        fontSize: 11.5,
+        lineHeight: 1.5
+      }
+    }, total > CONTACT_MAX ? "Above the usual per-session band — cut a set from the highest-impact drills if your landings get noisy or sloppy." : "Counts jump and bound landings only (ladder footwork and sprints aren't included). Quality beats quantity — stop a drill when landings stop being quiet."));
+  })(), BLOCKS.map(b => {
+    const idxs = items.map((it, i) => ({
+      it,
+      i
+    })).filter(x => x.it.block === b.id);
+    if (!idxs.length) return null;
+    return /*#__PURE__*/React.createElement("div", {
+      key: b.id,
+      style: {
+        marginBottom: 6
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 8
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: display,
+        fontSize: 19,
+        color: C.coral,
+        textTransform: "uppercase",
+        lineHeight: 1
+      }
+    }, b.label), /*#__PURE__*/React.createElement("p", {
+      style: {
+        color: C.mut,
+        fontSize: 12,
+        lineHeight: 1.5,
+        marginTop: 4
+      }
+    }, b.note)), idxs.map(x => card(x.it, x.i)));
+  }), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 6
     }
   }, /*#__PURE__*/React.createElement(TightPicker, {
     tight: tight,
     onPick: onPickTight,
-    label: "What felt tight? Tunes your stretch"
+    label: "What felt tight? Tunes your cool-down"
   })), !done ? /*#__PURE__*/React.createElement("button", {
     onClick: onFinish,
     disabled: !allChecked,
@@ -6342,7 +7833,7 @@ function LadderView({
     }
   }, /*#__PURE__*/React.createElement(Check, {
     size: 20
-  }), " Mark Ladder Done") : /*#__PURE__*/React.createElement("div", {
+  }), " Mark Session Done") : /*#__PURE__*/React.createElement("div", {
     className: "rounded-2xl text-center",
     style: {
       background: C.panel2,
@@ -6363,7 +7854,7 @@ function LadderView({
       fontSize: 13,
       marginTop: 4
     }
-  }, "Sharp footwork — cool down and stretch."), /*#__PURE__*/React.createElement("button", {
+  }, "Explosive work in the bank — cool down well."), /*#__PURE__*/React.createElement("button", {
     onClick: onUndo,
     className: "rounded-xl",
     style: {
@@ -7019,115 +8510,102 @@ function FlowSession({
   })), bottomSlot);
 }
 
-/* ---------- WEEK ---------- */
-function WeekView({
-  level,
-  schedule,
-  injuries
+/* ---------- PROGRESS ---------- */
+function VolumePanel({
+  volume
 }) {
-  const today = new Date().getDay();
-  const week = SCHEDULES[schedule];
-  const meta = SCHED_META.find(s => s.id === schedule);
-  const regions = activeRegions(injuries);
-  const labels = activeLabels(injuries);
+  // Sum this week's (last 7 days) sets per muscle group.
+  const totals = {};
+  for (let i = 0; i < 7; i++) {
+    const k = keyOf(addDays(new Date(), -i));
+    const v = volume[k];
+    if (!v) continue;
+    Object.keys(v).forEach(m => {
+      totals[m] = (totals[m] || 0) + v[m];
+    });
+  }
+  const any = Object.keys(totals).length > 0;
   return /*#__PURE__*/React.createElement("div", {
-    className: "flex flex-col gap-2.5"
-  }, /*#__PURE__*/React.createElement("h2", {
     style: {
-      fontFamily: display,
-      fontSize: 26,
-      color: C.text,
-      textTransform: "uppercase",
-      lineHeight: 1
+      marginBottom: 26
     }
-  }, meta.label), /*#__PURE__*/React.createElement("p", {
+  }, /*#__PURE__*/React.createElement("div", {
     style: {
       color: C.mut,
-      fontSize: 13.5,
-      lineHeight: 1.6,
+      fontSize: 11,
+      textTransform: "uppercase",
+      letterSpacing: ".05em",
       marginBottom: 4
     }
-  }, meta.blurb, " A full-body stretch is part of ", /*#__PURE__*/React.createElement("i", null, "every"), " day."), labels.length > 0 && /*#__PURE__*/React.createElement("div", {
-    className: "flex items-center gap-2 rounded-xl",
+  }, "Weekly volume · sets per muscle"), /*#__PURE__*/React.createElement("p", {
     style: {
-      background: "rgba(255,200,87,0.1)",
-      border: `1px solid rgba(255,200,87,0.35)`,
-      padding: "10px 13px",
-      marginBottom: 4
+      color: C.mut,
+      fontSize: 12,
+      lineHeight: 1.5,
+      marginBottom: 12
     }
-  }, /*#__PURE__*/React.createElement(ShieldAlert, {
-    size: 15,
+  }, "Research points to roughly ", /*#__PURE__*/React.createElement("b", {
     style: {
-      color: C.amber,
-      flexShrink: 0
+      color: C.text
     }
-  }), /*#__PURE__*/React.createElement("span", {
+  }, VOL_MIN, "–", VOL_MAX, " sets per muscle per week"), ", with diminishing returns past that. Synergist work counts as a half set."), !any && /*#__PURE__*/React.createElement("p", {
     style: {
-      color: C.amber,
-      fontSize: 12.5,
-      fontWeight: 600
+      color: C.mut,
+      fontSize: 12.5
     }
-  }, "Adjusted for: ", labels.join(", "))), week.map((dayKey, i) => {
-    const d = DAYS[dayKey];
-    const Icon = d.type === "workout" ? Dumbbell : d.type === "rest" ? Moon : Wind;
-    const isToday = i === today;
-    const name = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][i];
-    const sub = d.type === "workout" ? d.slots.map(s => selectExercise(s, level, regions).name).join(" · ") : d.type === "recovery" ? "Light mobility + easy walk" : "Recovery & sleep";
+  }, "Complete a strength session to start tracking."), any && MUSCLES.map(m => {
+    const n = Math.round((totals[m] || 0) * 10) / 10;
+    const pct = Math.min(100, n / VOL_MAX * 100);
+    const col = n >= VOL_MIN ? C.accent : n >= VOL_MIN / 2 ? C.amber : C.mut;
     return /*#__PURE__*/React.createElement("div", {
-      key: i,
-      className: "rounded-2xl p-4 flex items-start gap-3",
+      key: m,
       style: {
-        background: isToday ? C.panel2 : C.panel,
-        border: `1px solid ${isToday ? C.accent : C.line}`
-      }
-    }, /*#__PURE__*/React.createElement(Icon, {
-      size: 20,
-      style: {
-        color: d.type === "workout" ? C.accent : C.mut,
-        flexShrink: 0,
-        marginTop: 2
-      }
-    }), /*#__PURE__*/React.createElement("div", {
-      style: {
-        flex: 1
+        marginBottom: 9
       }
     }, /*#__PURE__*/React.createElement("div", {
-      className: "flex items-center gap-2"
+      className: "flex items-center justify-between",
+      style: {
+        marginBottom: 3
+      }
     }, /*#__PURE__*/React.createElement("span", {
       style: {
         color: C.text,
-        fontWeight: 700,
-        fontSize: 15
-      }
-    }, name), isToday && /*#__PURE__*/React.createElement("span", {
-      style: {
-        background: C.accent,
-        color: "#1b1b15",
-        fontSize: 10,
-        fontWeight: 700,
-        padding: "2px 7px",
-        borderRadius: 20,
-        textTransform: "uppercase"
-      }
-    }, "Today")), /*#__PURE__*/React.createElement("div", {
-      style: {
-        color: C.accent,
-        fontSize: 13,
-        fontWeight: 600,
-        marginTop: 2
-      }
-    }, d.focus), /*#__PURE__*/React.createElement("div", {
-      style: {
-        color: C.mut,
         fontSize: 12.5,
-        marginTop: 4,
-        lineHeight: 1.5
+        textTransform: "capitalize"
       }
-    }, sub)));
+    }, m), /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: col,
+        fontSize: 12,
+        fontWeight: 700
+      }
+    }, n, " ", n >= VOL_MIN ? "\u2713" : "")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        height: 6,
+        background: C.panel,
+        borderRadius: 3,
+        overflow: "hidden",
+        position: "relative"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: pct + "%",
+        height: "100%",
+        background: col,
+        borderRadius: 3
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: "absolute",
+        left: VOL_MIN / VOL_MAX * 100 + "%",
+        top: 0,
+        bottom: 0,
+        width: 1,
+        background: C.line
+      }
+    })));
   }));
 }
-
-/* ---------- PROGRESS ---------- */
 function ProgressView({
   history,
   stretchHistory,
@@ -7136,8 +8614,14 @@ function ProgressView({
   sprintHistory,
   walkHistory,
   foamHistory,
-  schedule
+  schedule,
+  volume,
+  mode
 }) {
+  // Only show pillars for activities this mode actually schedules, plus foam roll, which
+  // is always available from the Schedule screen. Prevents stranded, uncompletable cards.
+  const activeActivities = new Set(["foamroll"]);
+  Object.values(templatesFor(mode)).forEach(t => (t.activities || []).forEach(a => activeActivities.add(a)));
   const HM = {
     calisthenics: history,
     qigong: qiHistory,
@@ -7148,7 +8632,7 @@ function ProgressView({
     foamroll: foamHistory
   };
   const tk = todayKey();
-  const dayPlan = planFor(new Date().getDay(), schedule);
+  const dayPlan = planFor(new Date().getDay(), schedule, mode);
   const planned = dayPlan.activities;
   const doneToday = planned.filter(a => HM[a][tk]).length;
 
@@ -7157,7 +8641,7 @@ function ProgressView({
   for (let i = 34; i >= 0; i--) {
     const d = addDays(new Date(), -i);
     const k = keyOf(d);
-    const acts = planFor(d.getDay(), schedule).activities;
+    const acts = planFor(d.getDay(), schedule, mode).activities;
     const doneN = acts.filter(a => HM[a][k]).length;
     cells.push({
       k,
@@ -7194,8 +8678,10 @@ function ProgressView({
     id: "foamroll",
     icon: Disc3,
     color: C.rose
-  }];
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+  }].filter(x => activeActivities.has(x.id));
+  return /*#__PURE__*/React.createElement("div", null, mode === "gym" && /*#__PURE__*/React.createElement(VolumePanel, {
+    volume: volume || {}
+  }), /*#__PURE__*/React.createElement("div", {
     className: "rounded-2xl p-4",
     style: {
       background: C.panel,
